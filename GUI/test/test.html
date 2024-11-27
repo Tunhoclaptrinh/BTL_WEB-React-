@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .category {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-top {
+            margin-bottom: 20px;
+        }
+
+        .category-top p {
+            font-size: 14px;
+            display: inline;
+        }
+
+        .category-top span {
+            margin: 0 8px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .category-left {
+            width: 25%;
+            border-right: 1px solid #ddd;
+            padding-right: 20px;
+        }
+
+        .category-left ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .category-left-li > a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+
+        .category-left-li > a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .category-left-li ul {
+            list-style-type: none;
+            padding-left: 20px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .category-left-li ul li a {
+            display: block;
+            padding: 8px 20px;
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .category-left-li ul li a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .category-left-li.block ul {
+            max-height: 500px; /* Adjust as needed */
+            transition: max-height 0.5s ease-in;
+        }
+
+        .category-right {
+            width: 75%;
+            padding-left: 20px;
+        }
+
+        .category-right-top-item {
+            flex: 1;
+            padding: 0 12px;
+            margin-bottom: 20px;
+        }
+
+        .category-right-top-item:first-child {
+            flex: 2;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .category-right-top-item button,
+        .category-right-top-item select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .category-right-content-item {
+            width: calc(25% - 12px);
+            text-align: center;
+            padding: 12px 0;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .category-right-content-item:hover {
+            transform: scale(1.05);
+        }
+
+        .category-right-content-item img {
+            width: 100%;
+        }
+
+        .category-right-content-item h1 {
+            font-size: 14px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .category-right-content-item p {
+            font-size: 16px;
+            color: #e74c3c;
+        }
+
+        .category-right-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .category-right-bottom p {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .category-left,
+            .category-right {
+                width: 100%;
+                padding: 0;
+            }
+
+            .category-left {
+                margin-bottom: 20px;
+                border-right: none;
+            }
+
+            .category-right-content-item {
+                width: calc(50% - 12px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-right-content-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="category">
+    <div class="container">
+        <div class="category-top row">
+            <p>Home</p> <span>&#10230;</span> <p>Nữ</p> <span>&#10230;</span> <p>Hàng nữ mới về</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="category-left">
+                <ul>
+                    <li class="category-left-li"><a href="#">Nữ</a>
+                        <ul>
+                            <li><a href="#">Hàng nữ mới về</a></li>
+                            <li><a href="#">Hàng nữ mới về 1</a></li>
+                            <li><a href="#">Hàng nữ mới về 2</a></li>
+                            <li><a href="#">Hàng nữ mới về 3</a></li>
+                            <li><a href="#">Hàng nữ mới về 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="category-left-li"><a href="#">Nam</a>
+                        <ul>
+                            <li><a href="#">Hàng nam mới về</a></li>
+                            <li><a href="#">Hàng nam mới về 1</a></li>
+                            <li><a href="#">Hàng nam mới về 2</a></li>
+                            <li><a href="#">Hàng nam mới về 3</a></li>
+                            <li><a href="#">Hàng nam mới về 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="category-left-li"><a href="#">Trẻ em</a></li>
+                    <li class="category-left-li"><a href="#">Bộ sưu tập</a></li>
+                    <li class="category-left-li"><a href="#">Đồ bảo hộ</a></li>
+                </ul>
+            </div>
+            <div class="category-right row">
+                <div class="category-right-top-item">
+                    <p>Hàng nữ mới về</p>
+                </div>
+                <div class="category-right-top-item">
+                    <button><span>Bộ lọc</span><i class="fas fa-sort-down"></i></button>
+                </div>
+                <div class="category-right-top-item">
+                    <select name="" id="">
+                        <option value="">Sắp xếp</option>
+                        <option value="">Giá cao đến thấp</option>
+                        <option value="">Giá thấp đến cao</option>
+                    </select>
+                </div>
+                <div class="category-right-content row">
+                    <div class="category-right-content-item">
+                        <img src="https://via.placeholder.com/200" alt="">
+                        <h1>ĐẦM ÔM HỌA TIẾT MS12345</h1>
+                        <p>790.000<sup>Đ</sup></p>
+                    </div>
+                    <div class="category-right-content-item">
+                        <img src="https://via.placeholder.com/200" alt="">
+                        <h1>ĐẦM ÔM HỌA TIẾT MS12345</h1>
+                        <p>790.000<sup>Đ</sup></p>
+                    </div>
+                    <div class="category-right-content-item">
+                        <img src="https://via.placeholder.com/200" alt="">
+                        <h1>ĐẦM ÔM HỌA TIẾT MS12345</h1>
+                        <p>790.000<sup>Đ</sup></p>
+                    </div>
+                    <div class="category-right-content-item">
+                        <img src="https://via.placeholder.com/200" alt="">
+                        <h1>ĐẦM ÔM HỌA TIẾT MS12345</h1>
+                        <p>790.000<sup>Đ</sup></p>
+                    </div>
+                    <div class="category-right-content-item">
+                        <img src="https://via.placeholder.com/200" alt="">
+                        <h1>ĐẦM ÔM HỌA TIẾT MS12345</h1>
+                        <p>790.000<sup>Đ</sup></p>
+                    </div>
+                    <div class="category-right-content-item">
+                        <img src="https://via.placeholder.com/200" alt="">
+                        <h1>ĐẦM ÔM HỌA TIẾT MS12345</h1>
+                        <p>790.000<sup>Đ</sup></p>
+                    </div>
+                    <div class="category-right-content-item">
+                        <img src="https://via.placeholder.com/200" alt="">
+                        <h1>ĐẦM ÔM HỌA TIẾT MS12345</h1>
+                        <p>790.000<sup>Đ</sup></p>
+                    </div>
+                    <div class="category-right-content-item">
+                        <img src="https://via.placeholder.com/200" alt="">
+                        <h1>ĐẦM ÔM HỌA TIẾT MS12345</h1>
+                        <p>790.000<sup>Đ</sup></p>
+                    </div>
+                </div>
+                <div class="category-right-bottom row">
+                    <div class="category-right-bottom-items">
+                        <p>Hiển thị 1<span>|</span>8 sản phẩm</p>
+                    </div>
+                    <div class="category-right-bottom-items">
+                        <p><span>&#171;</span> 1 2 3 4 5 <span>&#187;</span> Trang cuối</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const itemslideBar = document.querySelectorAll(".category-left-li");
+
+    itemslideBar.forEach(function(menu) {
+        menu.addEventListener("click", function() {
+            // Toggle the block class
+            menu.classList.toggle("block");
+
+            // Smooth transition for submenu
+            let submenu = menu.querySelector("ul");
+            if (submenu.style.maxHeight) {
+                submenu.style.maxHeight = null;
+            } else {
+                submenu.style.maxHeight = submenu.scrollHeight + "px";
+            }
+
+            // Collapse other open submenus
+            itemslideBar.forEach(function(otherMenu) {
+                if (otherMenu !== menu) {
+                    otherMenu.classList.remove("block");
+                    let otherSubmenu = otherMenu.querySelector("ul");
+                    otherSubmenu.style.maxHeight = null;
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

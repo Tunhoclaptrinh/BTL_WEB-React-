@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<!----------------------- header ------------------------------------------------>
+
+    <header>
+        <div class="logo">
+            <img src="/image/logotun (2).png" alt="">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu">
+            <li><a href="">ORDER</a>
+                <ul class="sub-menu">
+                    <li><a href="">Recent</a>
+                        <ul>
+                            <li><a href="">7 days</a></li>
+                            <li><a href="">15 days</a></li>
+                            <li><a href="">30 days</a></li>
+                            <li><a href="">3 months</a></li>
+                            <li><a href="">6 months</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">PRODUCT</a>
+                <ul class="sub-menu">
+                    <li><a href="">Type</a>
+                        <ul>
+                            <li><a href="">Type 1</a></li>
+                            <li><a href="">Type 2</a></li>
+                            <li><a href="">Type 3</a></li>
+                            <li><a href="">Type 4</a></li>
+                            <li><a href="">Type 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">SUPPLIER</a>
+                <ul class="sub-menu">
+                    <li><a href="">Area</a>
+                        <ul>
+                            <li><a href="">Area 1</a></li>
+                            <li><a href="">Area 2</a></li>
+                            <li><a href="">Area 3</a></li>
+                            <li><a href="">Area 4</a></li>
+                            <li><a href="">Area 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">WAREHOUSE</a>
+                <ul class="sub-menu">
+                    <li><a href="">Type</a>
+                        <ul>
+                            <li><a href="">Type 1</a></li>
+                            <li><a href="">Type 2</a></li>
+                            <li><a href="">Type 3</a></li>
+                            <li><a href="">Type 4</a></li>
+                            <li><a href="">Type 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">SHIPPING</a>
+                <ul class="sub-menu">
+                    <li><a href="">Type</a>
+                        <ul>
+                            <li><a href="">Type 1</a></li>
+                            <li><a href="">Type 2</a></li>
+                            <li><a href="">Type 3</a></li>
+                            <li><a href="">Type 4</a></li>
+                            <li><a href="">Type 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">RECEIPT</a>
+                <ul class="sub-menu">
+                    <li><a href="">Recent</a>
+                        <ul>
+                            <li><a href="">7 days</a></li>
+                            <li><a href="">15 days</a></li>
+                            <li><a href="">30 days</a></li>
+                            <li><a href="">3 months</a></li>
+                            <li><a href="">6 months</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">DELIVERY</a>
+                <ul class="sub-menu">
+                    <li><a href="">Recent</a>
+                        <ul>
+                            <li><a href="">7 days</a></li>
+                            <li><a href="">15 days</a></li>
+                            <li><a href="">30 days</a></li>
+                            <li><a href="">3 months</a></li>
+                            <li><a href="">6 months</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+        </div>
+        <div class="others">
+            <li><input type="text" placeholder="Search"><i class="fas fa-search"></i></li>
+            <li><a class="fa fa-paw" href=""></a></li>
+            <li><a class="fa fa-user" href=""></a></li>
+            <li><a class="fa fa-shopping-bag" href=""></a></li>
+        </div>
+    </header>
+
+
+<!----------------------- delivery ------------------------------------------------>
+
+    
+    <section class="delivery">
+        <div class="container">
+            <div class="delivery-top-wrap-status">
+                <div class="delivery-top-status">
+                    <div class="cart-top-cart-status cart-top-item-status">
+                        <i>Cart</i>
+                    </div>
+                    <div class="delivery-top-address-status delivery-top-item-status">
+                        <i>Delivery</i>
+                    </div>
+                    <div class="delivery-top-payment-status delivery-top-item-status">
+                        <i>Payment</i>
+                    </div>
+                </div>
+            </div>
+            <div class="delivery-top-wrap">
+                <div class="delivery-top">
+                    <div class="cart-top-cart cart-top-item">
+                        <i class="fas fa-shopping-cart "></i>
+                    </div>
+                    <div class="delivery-top-address delivery-top-item">
+                        <i class="fas fa-map-marker-alt "></i>
+                    </div>
+                    <div class="delivery-top-payment delivery-top-item">
+                        <i class="fas fa-money-check-alt "></i>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="delivey-content row">
+                    <div class="delivery-content-left">
+                        <p>Vui lòng chọn địa chỉ giao hàng</p>
+                        <div class="delivery-content-left-login row">
+                            <i class="fas fa-sign-in-alt "></i>
+                            <p>Đăng Nhập (nếu bạn có tài khoản của NguynTUN)</p>
+                        </div>
+                        <div class="delivery-content-left-khachle row">
+                            <input name="Typeofcustomer" type="radio" checked>
+                            <p><span style="font-weight: bold;"> Khách lẻ </span>(nếu bạn không muốn lưu lại thông tin)</p>
+                        </div>
+                        <div class="delivery-content-left-dangky row">
+                            <input name="Typeofcustomer" type="radio">
+                            <p><span style="font-weight: bold;"> Đăng ký </span>(nếu bạn muốn lưu lại thông tin)</p>
+                        </div>
+                        <div class="delivery-content-left-input-top row">
+                            <div class="delivery-content-left-input-top-item">
+                                <label for="">Họ và tên <span style="color: red;">*</span></label>
+                                <input type="text">
+                            </div>
+                            <div class="delivery-content-left-input-top-item">
+                                <label for="">Số điện thoại <span style="color: red;">*</span></label>
+                                <input type="text">
+                            </div>
+                            <div class="delivery-content-left-input-top-item">
+                                <label for="">Tỉnh/TP <span style="color: red;">*</span></label>
+                                <input type="text">
+                            </div>
+                            <div class="delivery-content-left-input-top-item">
+                                <label for="">Quận/Huyện <span style="color: red;">*</span></label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="delivery-content-left-input-bottom">
+                            <div class="delivery-content-left-input-bottom-item">
+                                <label for="">Phường Xã <span style="color: red;">*</span></label>
+                                <input type="text">
+                            </div>
+                            <div class="delivery-content-left-input-bottom-item">
+                                <label for="">Địa chỉ <span style="color: red;">*</span></label>
+                                <input type="text">
+                            </div>
+                            <div class="delivery-content-left-input-bottom-item">
+                                <label for="">Tin nhắn</label>
+                                <input type="text" placeholder="Lưu ý cho người bán/giao hàng">
+                            </div>
+                        </div>
+                        <div class="delivery-content-left-button row">
+                            <a href=""> <span>&#171;</span><p> Quay lại giỏ hàng</p></a>
+                            <button><p style="font-weight: bold;">THANH TOÁN VÀ GIAO HÀNG</p></button>
+                        </div>
+                    </div>
+                    <div class="delivery-content-right">
+                        <table>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Giảm giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                            <tr>
+                                <td>Áo polo kẻ ngang MS 112233</td>
+                                <td>- 30%</td>
+                                <td>1</td>
+                                <td><p>590.000<sup>Đ</sup></p></td>
+                            </tr>
+                            <tr>
+                                <td>Áo pthun kẻ ngang MS 112233</td>
+                                <td>- 30%</td>
+                                <td>1</td>
+                                <td><p>123.456<sup>Đ</sup></p></td>
+                            </tr>
+                            <tr>
+                                <td>Áo thun kẻ ngang MS 112233</td>
+                                <td>- 30%</td>
+                                <td>1</td>
+                                <td><p>123.456<sup>Đ</sup></p></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;" colspan="3">Tổng</td>
+                                <td style="font-weight: bold;" colspan="3">123.456<sup>Đ</sup></p></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;" colspan="3">Thuế VAT</td>
+                                <td style="font-weight: bold;" colspan="3">12.456<sup>Đ</sup></p></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;" colspan="3">Tổng tiền hàng</td>
+                                <td style="font-weight: bold;" colspan="3">700.456<sup>Đ</sup></p></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!----------------------- footer ------------------------------------------------>
+
+    
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="/image/logotun (Custom).png" alt="Logo">
+        </div>
+        <div class="footer-columns">
+            <ul class="footer-column">
+                <h3>About Us</h3>
+                <li>Introduction</li>
+                <li>Careers</li>
+                <li>Partners</li>
+            </ul>
+            <ul class="footer-column">
+                <h3>Customer Service</h3>
+                <li>Accounting services</li>
+                <li>Booking guide</li>
+                <li>Payment methods</li>
+                <li>Return Policy</li>
+                <li>Warranty</li>
+                <li>Q&A</li>
+            </ul>
+            <ul class="footer-column Newsletter">
+                <h3>Newsletter</h3>
+                <li>
+                    <br>
+                    <input type="email" placeholder="Your email">
+                    <button>Subscribe</button>
+                </li>
+                <br>
+                <li>
+                    <h1><a href="" class="Hotline" style="color: crimson;">Hotline: 0246 662 3434</a></h1>
+                </li>
+            </ul>
+            <ul class="footer-column">
+                <h3>Download App</h3>
+                <div>
+                    <img src="/image/appstore.png" alt="Apple Store">
+                    <br>
+                    <img src="/image/googleplay.png" alt="Google Play">
+                </div>
+            </ul>
+        </div>
+        <div class="footer-socials">
+            <img src="/image/facebook_social media_social_icon.png" alt="Facebook">
+            <img src="/image/google_brand_branding_logo_network_icon.png" alt="Google">
+            <img src="/image/instagram_social media_social_icon.png" alt="Instagram">
+            <img src="/image/video_youtube_logo_social_social media_icon.png" alt="YouTube" style="width: 42px; height: 30px;">
+            <img src="/image/inspiration_pin_pinned_pinterest_social network_icon.png" alt="Pinterest">
+            <br><br>
+        </div>
+        <div class="footer-rights">
+            <img src="/image/dmca.png" alt="">
+            <img src="/image/logo_bct.webp" alt="">
+            <br><br>
+            <p>© 2024 NguỹnTún All rights reserved</p>
+        </div>
+    </footer>
+</body>
+<script src="/script.js"></script>
+
+</html>

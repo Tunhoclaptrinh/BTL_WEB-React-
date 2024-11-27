@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css">
+    <style>
+        /* General styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f3f3f3;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #f2f2f2;
+            padding: 12px 50px;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header.sticky {
+            background-color: #ffffff;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .menu {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .menu li {
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #555;
+        }
+
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .sub-menu li {
+            width: 200px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .sub-menu a {
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        .menu li:hover .sub-menu {
+            display: block;
+        }
+
+        .others {
+            display: flex;
+            align-items: center;
+        }
+
+        .others li {
+            margin: 0 10px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: #fff;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Main container */
+        .container {
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Cart table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        td p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        td input {
+            width: 40px;
+            text-align: center;
+        }
+
+        .remove-item {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Summary table */
+        .summary {
+            margin-top: 20px;
+            border-top: 2px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .summary table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .summary th, .summary td {
+            padding: 10px;
+            text-align: right;
+        }
+
+        .summary th {
+            width: 70%;
+        }
+
+        .summary td {
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .actions {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .actions button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 8px 20px;
+                height: 50px;
+            }
+
+            .logo img {
+                max-width: 80px;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                background-color: #f2f2f2;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .others {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo">
+            <a href="#"><img src="logo.jpg" alt="Logo"></a>
+        </div>
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Services</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">SEO</a></li>
+                    <li><a href="#">Marketing</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="others">
+            <li><input type="text" placeholder="Search..."><i class="fa fa-search"></i></li>
+            <li><i class="fa fa-user"></i></li>
+            <li><i class="fa fa-shopping-cart"></i><span class="cart-items">3</span></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="/image/sp1.webp" alt=""></td>
+                    <td><p>Quần sooc bò đen MS 23213123</p></td>
+                    <td><img src="/image/color4.png" alt=""></td>
+                    <td><p>XL</p></td>
+                    <td><input type="number" value="2" min="0" onchange="updateCart()"></td>
+                    <td>239,000 Đ</td>
+                    <td><span class="remove-item" onclick="removeItem(this)">Remove</span></td>
+                </tr>
+                <tr>
+                    <td><img src="/image/sp3.webp" alt=""></td>
+                    <td><p>Quần bò đen MS 232123</p></td>
+                    <td><img src="/image/color4.png" alt=""></td>
+                    <td><p>XL</p></td>
+                    <td><input type="number" value="2" min="0" onchange="updateCart()"></td>
+                    <td>279,000 Đ</td>
+                    <td><span class="remove-item" onclick="removeItem(this)">Remove</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="summary">
+            <table>
+                <tr>
+                    <th>Subtotal</th>
+                    <td id="subtotal">0 Đ</td>
+                </tr>
+                <tr>
+                    <th>Tax</th>
+                    <td id="tax">0 Đ</td>
+                </tr>
+                <tr>
+                    <th>Shipping</th>
+                    <td>5,000 Đ</td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <td id="total">0 Đ</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="actions">
+            <button>Continue Shopping</button>
+            <button>Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        function updateCart() {
+            let cartTable = document.getElementById('cartTable');
+            let subtotal = 0;
+            for (let i = 1; i < cartTable.rows.length; i++) {
+                let quantity = parseInt(cartTable.rows[i].cells[4].children[0].value);
+                let price = parseFloat(cartTable.rows[i].cells[5].innerText.replace(' Đ', '').replace(',', ''));
+                subtotal += quantity * price;
+            }
+
+            let tax = subtotal * 0.1;
+            let shipping = 5000;
+            let total = subtotal + tax + shipping;
+
+            document.getElementById('subtotal').innerText = `${subtotal.toLocaleString()} Đ`;
+            document.getElementById('tax').innerText = `${tax.toLocaleString()} Đ`;
+            document.getElementById('total').innerText = `${total.toLocaleString()} Đ`;
+        }
+
+        function removeItem(element) {
+            let row = element.parentElement.parentElement;
+            row.remove();
+            updateCart();
+        }
+
+        window.onload = updateCart;
+    </script>
+</body>
+</html>

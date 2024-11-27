@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    
+<!----------------------- header ------------------------------------------------>
+
+    <header>
+        <div class="logo">
+            <img src="/image/logotun (2).png" alt="">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu">
+            <li><a href="">ORDER</a>
+                <ul class="sub-menu">
+                    <li><a href="">Recent</a>
+                        <ul>
+                            <li><a href="">7 days</a></li>
+                            <li><a href="">15 days</a></li>
+                            <li><a href="">30 days</a></li>
+                            <li><a href="">3 months</a></li>
+                            <li><a href="">6 months</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">PRODUCT</a>
+                <ul class="sub-menu">
+                    <li><a href="">Type</a>
+                        <ul>
+                            <li><a href="">Type 1</a></li>
+                            <li><a href="">Type 2</a></li>
+                            <li><a href="">Type 3</a></li>
+                            <li><a href="">Type 4</a></li>
+                            <li><a href="">Type 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">SUPPLIER</a>
+                <ul class="sub-menu">
+                    <li><a href="">Area</a>
+                        <ul>
+                            <li><a href="">Area 1</a></li>
+                            <li><a href="">Area 2</a></li>
+                            <li><a href="">Area 3</a></li>
+                            <li><a href="">Area 4</a></li>
+                            <li><a href="">Area 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">WAREHOUSE</a>
+                <ul class="sub-menu">
+                    <li><a href="">Type</a>
+                        <ul>
+                            <li><a href="">Type 1</a></li>
+                            <li><a href="">Type 2</a></li>
+                            <li><a href="">Type 3</a></li>
+                            <li><a href="">Type 4</a></li>
+                            <li><a href="">Type 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">SHIPPING</a>
+                <ul class="sub-menu">
+                    <li><a href="">Type</a>
+                        <ul>
+                            <li><a href="">Type 1</a></li>
+                            <li><a href="">Type 2</a></li>
+                            <li><a href="">Type 3</a></li>
+                            <li><a href="">Type 4</a></li>
+                            <li><a href="">Type 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">RECEIPT</a>
+                <ul class="sub-menu">
+                    <li><a href="">Recent</a>
+                        <ul>
+                            <li><a href="">7 days</a></li>
+                            <li><a href="">15 days</a></li>
+                            <li><a href="">30 days</a></li>
+                            <li><a href="">3 months</a></li>
+                            <li><a href="">6 months</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+
+            <li><a href="">DELIVERY</a>
+                <ul class="sub-menu">
+                    <li><a href="">Recent</a>
+                        <ul>
+                            <li><a href="">7 days</a></li>
+                            <li><a href="">15 days</a></li>
+                            <li><a href="">30 days</a></li>
+                            <li><a href="">3 months</a></li>
+                            <li><a href="">6 months</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">All</a></li>
+                </ul>
+            </li>
+        </div>
+        <div class="others">
+            <li><input type="text" placeholder="Search"><i class="fas fa-search"></i></li>
+            <li><a class="fa fa-paw" href=""></a></li>
+            <li><a class="fa fa-user" href=""></a></li>
+            <li><a class="fa fa-shopping-bag" href=""></a></li>
+        </div>
+    </header>
+
+<!----------------------- cart ------------------------------------------------>
+    <section class="cart">
+        <div class="container">
+            <div class="cart-top-wrap-status">
+                <div class="cart-top-status">
+                    <div class="cart-top-cart-status cart-top-item-status">
+                        <i>Cart</i>
+                    </div>
+                    <div class="cart-top-address-status cart-top-item-status">
+                        <i>Delivery</i>
+                    </div>
+                    <div class="cart-top-payment-status cart-top-item-status">
+                        <i>Payment</i>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-top-wrap">
+                <div class="cart-top">
+                    <div class="cart-top-cart cart-top-item">
+                        
+                        <i class="fas fa-shopping-cart "></i>
+                    </div>
+                    <div class="cart-top-address cart-top-item">
+                        <i class="fas fa-map-marker-alt "></i>
+                    </div>
+                    <div class="cart-top-payment cart-top-item">
+                        <i class="fas fa-money-check-alt "></i>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-content row">
+                <div class="cart-content-left">
+                    <table>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Màu</th>
+                            <th>Size</th>
+                            <th>SL</th>
+                            <th>Thành Tiền</th>
+                            <th>Xóa</th>
+                        </tr>
+                        <tr>
+                            <td><img src="/image/sp1.webp" alt=""></td>
+                            <td><p>Quần sooc bò đen MS 23213123</p></td>
+                            <td><img src="/image/color4.png" alt=""></td>
+                            <td><p>XL</p></td>
+                            <td><input type="number" value="2" min="0" onchange="updateCart()"></td>
+                            <td>239,000 Đ</td>
+                            <td><span class="remove-item" onclick="removeItem(this)">x</span></td>
+                        </tr>
+                        <tr>
+                            <td><img src="/image/sp1.webp" alt=""></td>
+                            <td><p>Quần bò đen MS 232123</p></td>
+                            <td><img src="/image/color4.png" alt=""></td>
+                            <td><p>XL</p></td>
+                            <td><input type="number" value="2" min="0" onchange="updateCart()"></td>
+                            <td>279,000 Đ</td>
+                            <td><span class="remove-item" onclick="removeItem(this)">x</span></td>
+                        </tr>
+                        <tr>
+                            <td><img src="/image/sp1.webp" alt=""></td>
+                            <td><p>Quần bò đen MS 232123</p></td>
+                            <td><img src="/image/color4.png" alt=""></td>
+                            <td><p>XL</p></td>
+                            <td><input type="number" value="2" min="0" onchange="updateCart()"></td>
+                            <td>279,000 Đ</td>
+                            <td><span class="remove-item" onclick="removeItem(this)">x</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="cart-content-right">
+                    <div class="summary">
+                        <table>
+                            <tr>
+                                <th colspan="2">TỔNG TIỀN TRONG GIỎ HÀNG</th>
+                            </tr>
+                            <tr>
+                                <td>TỔNG SẢN PHẨM</td>
+                                <td id="total-items">0</td>
+                            </tr>
+                            <tr>
+                                <td>TỔNG TIỀN HÀNG</td>
+                                <td id="subtotal">0 Đ</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>VAT 10%</td>
+                                <td id="tax">0 Đ</td>
+                            </tr>
+                            <tr>
+                                <td>Phí vận chuyển</td>
+                                <td id="shipping">0 Đ</td>
+                            </tr>
+                            <tr>
+                                <td>TẠM TÍNH</td>
+                                <td style="font-weight: bold;" id="total">0 Đ</td>
+                            </tr>
+                        
+                        </table>
+                    </div>
+                    <div class="cart-content-right-text">
+                        <p>Bạn sẽ được miễn phí ship khi đơn hàng của bạn có tổng giá trị trên <b style="color: red;">1.000.000 <sup>Đ</sup></b></p>
+                        <p style="color: red; font-weight: bold;">Mua thêm <span style="font-size: large; font-weight: bold;">131.000 <sup>Đ</sup></span> để được miễn phí ship</p>
+                    </div>
+                    <div class="cart-content-right-button">
+                        <button>TIẾP TỤC MUA SẮM</button>
+                        <button>THANH TOÁN</button>
+                    </div>
+                    <div class="cart-content-right-login">
+                        <p>Tài khoản NguynTUN</p>
+                        <p>Hãy <a href=""> login</a> tài khoản của bạn để tích điểm thành viên </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="/image/logotun (Custom).png" alt="Logo">
+        </div>
+        <div class="footer-columns">
+            <ul class="footer-column">
+                <h3>About Us</h3>
+                <li>Introduction</li>
+                <li>Careers</li>
+                <li>Partners</li>
+            </ul>
+            <ul class="footer-column">
+                <h3>Customer Service</h3>
+                <li>Accounting services</li>
+                <li>Booking guide</li>
+                <li>Payment methods</li>
+                <li>Return Policy</li>
+                <li>Warranty</li>
+                <li>Q&A</li>
+            </ul>
+            <ul class="footer-column Newsletter">
+                <h3>Newsletter</h3>
+                <li>
+                    <br>
+                    <input type="email" placeholder="Your email">
+                    <button>Subscribe</button>
+                </li>
+                <br>
+                <li>
+                    <h1><a href="" class="Hotline" style="color: crimson;">Hotline: 0246 662 3434</a></h1>
+                </li>
+            </ul>
+            <ul class="footer-column">
+                <h3>Download App</h3>
+                <div>
+                    <img src="/image/appstore.png" alt="Apple Store">
+                    <br>
+                    <img src="/image/googleplay.png" alt="Google Play">
+                </div>
+            </ul>
+        </div>
+        <div class="footer-socials">
+            <img src="/image/facebook_social media_social_icon.png" alt="Facebook">
+            <img src="/image/google_brand_branding_logo_network_icon.png" alt="Google">
+            <img src="/image/instagram_social media_social_icon.png" alt="Instagram">
+            <img src="/image/video_youtube_logo_social_social media_icon.png" alt="YouTube" style="width: 42px; height: 30px;">
+            <img src="/image/inspiration_pin_pinned_pinterest_social network_icon.png" alt="Pinterest">
+            <br><br>
+        </div>
+        <div class="footer-rights">
+            <img src="/image/dmca.png" alt="">
+            <img src="/image/logo_bct.webp" alt="">
+            <br><br>
+            <p>© 2024 NguỹnTún All rights reserved</p>
+        </div>
+    </footer>
+</body>
+<script>
+    function toggleMenu() {
+        var menu = document.querySelector('.menu');
+        menu.classList.toggle('active');
+    }
+    
+    function updateCart() {
+        var subtotal = 0;
+        var totalItems = 0;
+        var items = document.querySelectorAll('.cart-content-left table tr:not(:first-child)');
+        items.forEach(function(item) {
+            var priceString = item.querySelector('td:nth-child(6)').innerText;
+            var price = parseFloat(priceString.replace(/[^\d.]/g, ''));
+            var quantity = item.querySelector('td:nth-child(5) input').value;
+            var total = price * quantity;
+            subtotal += total;
+            totalItems += parseInt(quantity, 10);
+        });
+    
+        document.getElementById('subtotal').innerText = subtotal.toLocaleString('it-IT') + ' Đ';
+        document.getElementById('total-items').innerText = totalItems;
+    
+        var tax = (subtotal * 0.1).toFixed(2);
+        var tax = parseFloat(tax)
+        document.getElementById('tax').innerText = tax.toLocaleString('it-IT') + ' Đ';
+    
+        
+        var shipping = 0;
+    if (subtotal >= 1000000) {
+        shipping = 0;
+        document.querySelector('.cart-content-right-text p:nth-child(2)').style.display = 'none';
+    } else {
+        shipping = 30000;
+        var remaining = 1000000 - subtotal;
+        document.querySelector('.cart-content-right-text p:nth-child(2)').innerText = 'Mua thêm ' + remaining.toLocaleString('it-IT') + ' Đ để được miễn phí vận chuyển !';
+        document.querySelector('.cart-content-right-text p:nth-child(2)').style.display = 'block';
+    }
+
+    document.getElementById('shipping').innerText = shipping.toLocaleString('it-IT') + ' Đ';
+
+    var total = subtotal + parseFloat(tax) + shipping;
+    document.getElementById('total').innerText = total.toLocaleString('it-IT') + ' Đ';
+}
+
+    
+    function removeItem(element) {
+        var row = element.parentElement.parentElement;
+        row.remove();
+        updateCart();
+    }
+    
+    // Initialize cart calculations
+    updateCart();
+    </script>
+</html>
