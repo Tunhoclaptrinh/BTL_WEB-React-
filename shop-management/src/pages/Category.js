@@ -200,8 +200,12 @@ const Category = () => {
       prevMenus.includes(menuIndex)
         ? prevMenus.filter((index) => index !== menuIndex) // Đóng menu
         : [...prevMenus, menuIndex] // Mở menu
+        
     );
+    setSelectedSubMenu(null); // Reset submenu được chọn khi đổi menu chính
+
   };
+  
 
   const menus = [
     {
@@ -272,7 +276,7 @@ const Category = () => {
                 >
                   <a href="#">{menu.title}</a>
                   {menu.subItems.length > 0 && (
-                    <ul
+                    <ul className='sub-item'
                       style={{
                         maxHeight: expandedMenus.includes(index)
                           ? `${menu.subItems.length * 40}px`
@@ -282,7 +286,7 @@ const Category = () => {
                       }}
                     >
                       {menu.subItems.map((subItem, subIndex) => (
-                        <li
+                        <li 
                           key={subIndex}
                           className={selectedSubMenu === `${index}-${subIndex}` ? 'selected' : ''} // Đổi màu khi được chọn
                           onClick={(e) => {

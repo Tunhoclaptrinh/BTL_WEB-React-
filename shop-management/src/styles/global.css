@@ -550,29 +550,32 @@ header:hover{
     margin: 0 8px;
 }
 
-/* Left menu  */
+
 .category-left{
     width: 20%;
+    
     border-right: 4px solid #ddd;
     border-top: 2px solid #ddd;
+
     border-bottom: 2px solid #ddd;
-    background-color: #cccccc28;
-    padding-top: 10px;
-    padding-right: 20px;
     border-radius: 10px;
-    padding-left: 20px;
+
+    padding-right: 20px;
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: #eeeeee96;
+
 
 }
 
 .category-left ul {
     list-style-type: none;
-    padding: 0;
-    border-radius: 10px;
     width: 100%;
+    padding: 0;
 }
 
-
 .category-left-li > a {
+    width: 100%;
     padding: 12px;
     text-decoration: none;
     color: #000;
@@ -580,24 +583,32 @@ header:hover{
     font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
-    border-radius: 10px;
-
 }
 
 .category-left-li:hover {
     background-color: #f0f0f0;
-    border-radius: 10px;
+}
 
+.category-left-li {
+    width: 100%;
+    border-radius: 10px;
 }
 
 .category-left-li ul {
+    width: 100%;
     display: none;
     list-style-type: none;
     padding-left: 20px;
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.5s ease-out;
-    width: 100%;
+    
+    
+}
+
+.sub-item {
+    padding: 0;
+    margin: 0;
 }
 
 .category-left-li ul li a {
@@ -607,72 +618,14 @@ header:hover{
     color: #666;
     font-size: 14px;
     transition: background-color 0.3s, color 0.3s;
-    width: 100%;
+    border-radius: 10px;
+    
+
 }
 
 .category-left-li ul li a:hover {
     background-color: #e0e0e0;
-    border-radius: 10px;
-
 }
-
-
-
-
-
-/* Mới Thêm  */
-.category-left-li.block > a {
-    font-weight: bold;
-    color: #007bff; /* Màu của menu được chọn */
-  }
-  
-  .category-left-li ul li.active > a {
-    font-weight: bold;
-    color: #ff5722; /* Màu của submenu được chọn */
-  }
-  
-  .category-left-li ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .category-left-li ul li {
-    margin: 5px 0;
-    transition: color 0.2s ease;
-  }
-  
-  .category-left-li ul li a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-  }
-  
-  .category-left-li ul li.active > a:hover {
-    color: #d32f2f; /* Hover state for active submenu */
-  }
-  
-  .category-left-li ul li.selected > a {
-    font-weight: bold;
-    color: #d32f2f; /* Đổi sang màu đỏ khi được chọn */
-  }
-  
-  .category-left-li ul li a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .category-left-li ul li a:hover {
-    color: #007bff; /* Hover effect */
-  }
-  
-/* ============================= */
-
-
-
-
-
-
-
 
 .category-right{
     width: 80%;
@@ -724,13 +677,13 @@ header:hover{
 }
 
 .category-right-content-item {
-    width: calc(25% - 12px);
+    width: calc(25% - 20px);
     text-align: center;
     /* padding: 12px 0; */
     padding: 2px 2px 12px 2px;
 
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
@@ -821,6 +774,53 @@ header:hover{
     }
 }
 
+
+.category-left-li.block > a {
+    font-weight: bold;
+    color: #007bff; /* Highlight menu chính khi submenu mở */
+  }
+  
+  /* .category-left-li.active > a {
+    text-decoration: underline;
+    color: #d32f2f;  */
+    /* Highlight khi menu chính được nhấn */
+  /* } */
+  
+  .category-left-li ul {
+    list-style-type: none;
+    padding-left: 15px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  
+  .category-left-li ul li a {
+    /* padding: 0; */
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .category-left-li ul li a:hover {
+    color: #d32f2f; /* Hiệu ứng hover submenu */
+  }
+  
+
+.category-left-li ul li.selected > a {
+    font-weight: bold;
+    color: #d32f2f; /* Đổi sang màu đỏ khi được chọn */
+
+  }
+  
+  .category-left-li ul li a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .category-left-li ul li a:hover {
+    color: #007bff; /* Hover effect */
+  }
+  
+
+
 /*--------------------- product ----------------------------------------------*/
 
 
@@ -850,11 +850,20 @@ header:hover{
 }
 .product-content-left-large-img img{
     width: 100%;
+    /* cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 2px#ccc; */
+
+}
+
+.product-content-left-large-img .product-image-zoom{
+    width: 100%;
+    height: 100%;
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0px 0px 2px 2px#ccc;
-
 }
+
 .product-content-left-small-img{
     width: 20%;
     margin: -20px 0;
@@ -975,7 +984,23 @@ header:hover{
 }
 .product-content-right-icon{
     display: flex;
+
+    
 }
+
+.product-content-right-bottom-content-large.activeB {
+    max-height: 500px; /* hoặc giá trị phù hợp */
+    transition: max-height 0.3s ease;
+  }
+  
+  .product-content-right-bottom-content-tittle-item.active {
+    font-weight: bold;
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+  
+
+  
 .product-content-right-icon-item{
     display: flex;
     margin-right: 12px;
@@ -1039,7 +1064,7 @@ header:hover{
     color: #333333;
 }
 .product-content-right-bottom-content-protect{
-    display: none;
+    /* display: none; */
 }
 .product-content-right-bottom-content-large{
     display: none;
@@ -1049,7 +1074,7 @@ header:hover{
 }
 
 /* ZOOOOOMMMMM */
-.zoom {
+/* .zoom {
     position: relative;
 }
 .zoom img {
@@ -1067,8 +1092,49 @@ header:hover{
     
     width: 300px;
     height: 300px;
-}
+} */
 
+.zoom {
+    position: relative;
+  }
+  
+  .img-zoom-lens {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    width: 100px;
+    height: 100px;
+    cursor: crosshair;
+    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 0.4;
+  }
+  
+  .zoom-result {
+    border: 1px solid #d4d4d4;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 110%;
+    background-repeat: no-repeat;
+  }
+  
+
+  .product-image-zoom {
+    /* width: 400px;
+    height: 400px; */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 2px solid black;
+  }
+  
+  .zoomable-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Hiệu ứng mượt khi phóng to/thu nhỏ */
+    cursor: zoom-in;
+  }
+  
 
 
 /*--------------------- product.related ----------------------------------------------*/

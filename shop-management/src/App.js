@@ -10,14 +10,46 @@ import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment';
 import Delivery from './pages/Delivery';
 
-import './styles/global.css';
+
+
+
+
+// Admin
+
+import AdminLayout from './components/Admin/AdminLayout';
+import AddCategory from './components/Admin/AddCategory';
+import CategoryList from './components/Admin/CategoryList';
+import AddProduct from './components/Admin/AddProduct';
+
+
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Header />
+
+        
+
+
+
+
+
+
+
+
+
+        
         <Routes>
+          <Route path="/admin" element={<AdminLayout />}></Route>
+                    <Route path="/admin/category/add" element={<AddCategory />} />
+                    <Route path="/admin/category/list" element={<CategoryList />} />
+                    <Route path="admin/product/add" element={<AddProduct />} />
+
+
+
+
+
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/product/:productId" element={<Product />} />
