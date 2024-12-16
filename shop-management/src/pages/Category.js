@@ -60,118 +60,164 @@ const Category = () => {
     },
 
     { 
-        id: 5, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "490.000", 
-        image: "./images/sp1.webp", 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-      { 
-        id: 6, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "400.000", 
-        image: "./images/sp1.webp", 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-      { 
-        id: 7, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "490.000", 
-        image: "./images/sp1.webp", 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-      { 
-        id: 8, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "90.000", 
-        image: "./images/sp1.webp", 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-      { 
-        id: 9, 
-        name: "ĐẦM ÔM HỌA TIẾT MS12345", 
-        price: "60.000", 
-        image: "./images/sp1.webp", 
-        description: "Chi tiết sản phẩm 1", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL"],
-      },
-      { 
-        id: 10, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "490.000", 
-        image: "./images/sp1.webp", 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-  
-      { 
-        id: 11, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "1.490.000", 
-        image: "./images/sp1.webp", 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-      { 
-        id: 12, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "490.000", 
-        image: "./images/sp1.webp", 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-  
-      { 
-          id: 13, 
-          name: "ÁO THUN CỔ TRÒN MS67890", 
-          price: "490.000", 
-          image: "./images/sp1.webp", 
-          description: "Chi tiết sản phẩm 2", 
-          color: "Xanh cổ vịt nhạt",
-          sizes: ["S", "M", "L", "XL", "XXL"],
-        },
-        { 
-          id: 14, 
-          name: "ÁO THUN CỔ TRÒN MS67890", 
-          price: "400.000", 
-          image: "./images/sp1.webp", 
-          description: "Chi tiết sản phẩm 2", 
-          color: "Xanh cổ vịt nhạt",
-          sizes: ["S", "M", "L", "XL", "XXL"],
-        },
-        { 
-          id: 15, 
-          name: "ÁO THUN CỔ TRÒN MS67890", 
-          price: "490.000", 
-          image: "./images/sp1.webp", 
-          description: "Chi tiết sản phẩm 2", 
-          color: "Xanh cổ vịt nhạt",
-          sizes: ["S", "M", "L", "XL", "XXL"],
-        },
-        { 
-          id: 16, 
-          name: "ÁO THUN CỔ TRÒN MS67890", 
-          price: "90.000", 
-          image: "./images/sp1.webp", 
-          description: "Chi tiết sản phẩm 2", 
-          color: "Xanh cổ vịt nhạt",
-          sizes: ["S", "M", "L", "XL", "XXL"],
-        },
+      id: 5, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "490.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    { 
+      id: 6, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "400.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    { 
+      id: 7, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "490.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    { 
+      id: 8, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "90.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },  
+    { 
+      id: 9, 
+      name: "ĐẦM ÔM HỌA TIẾT MS12345", 
+      price: "60.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 1", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL"],
+    },
+    { 
+      id: 10, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "490.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+
+    { 
+      id: 11, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "1.490.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    { 
+      id: 12, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "490.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+
+    { 
+      id: 13, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "490.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    { 
+      id: 14, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "400.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    { 
+      id: 15, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "490.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    { 
+      id: 16, 
+      name: "ÁO THUN CỔ TRÒN MS67890", 
+      price: "90.000", 
+      image: "./images/sp1.webp", 
+      description: "Chi tiết sản phẩm 2", 
+      color: "Xanh cổ vịt nhạt",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
 
   ];
+
+
+  const [expandedMenus, setExpandedMenus] = useState([]); // Track which submenus are expanded
+  // const [expandedMenu, setExpandedMenu] = useState(null); // Track the currently expanded menu
+  const [activeSubMenu, setActiveSubMenu] = useState(null); // Track the currently active submenu
+
+
+  const [selectedSubMenu, setSelectedSubMenu] = useState(null); // Submenu được chọn
+
+
+  // const toggleMenu = (menuIndex) => {
+  //   setExpandedMenu((prev) => (prev === menuIndex ? null : menuIndex)); // Toggle the main menu
+  // };
+
+  const toggleMenu = (menuIndex) => {
+      // Toggle the activeSubMenu state
+      setActiveSubMenu((prevMenu) => (prevMenu === menuIndex ? null : menuIndex));
+
+
+    // setExpandedMenus((prevExpandedMenus) =>
+    //   prevExpandedMenus.includes(menuIndex)
+    //     ? prevExpandedMenus.filter((index) => index !== menuIndex) // Remove if already expanded
+    //     : [...prevExpandedMenus, menuIndex] // Add if not expanded
+    // );
+    // Toggle trạng thái mở/đóng của menu
+    setExpandedMenus((prevMenus) =>
+      prevMenus.includes(menuIndex)
+        ? prevMenus.filter((index) => index !== menuIndex) // Đóng menu
+        : [...prevMenus, menuIndex] // Mở menu
+    );
+  };
+
+  const menus = [
+    {
+      title: 'Nữ',
+      subItems: ['Hàng nữ mới về', 'Hàng nữ mới về 1', 'Hàng nữ mới về 2', 'Hàng nữ mới về 3', 'Hàng nữ mới về 4'],
+    },
+    {
+      title: 'Nam',
+      subItems: ['Hàng nam mới về', 'Hàng nam mới về 1', 'Hàng nam mới về 2', 'Hàng nam mới về 3', 'Hàng nam mới về 4'],
+    },
+    { title: 'Trẻ em', subItems: [] },
+    { title: 'Bộ sưu tập', subItems: [] },
+    { title: 'Đồ bảo hộ', subItems: [] },
+  ];
   
+
   const filteredAndSortedProducts = products
   .filter((product) => {
     if (filter === "below") {
@@ -213,33 +259,52 @@ const Category = () => {
       </div>
       <div className="container">
         <div className="row">
+          {/* Left Sidebar */}
           <div className="category-left">
             <ul>
-              <li className="category-left-li">
-                <a href="#">Nữ</a>
-                <ul>
-                  <li><a href="">Hàng nữ mới về</a></li>
-                  <li><a href="">Hàng nữ mới về 1</a></li>
-                  <li><a href="">Hàng nữ mới về 2</a></li>
-                  <li><a href="">Hàng nữ mới về 3</a></li>
-                  <li><a href="">Hàng nữ mới về 4</a></li>
-                </ul>
-              </li>
-              <li className="category-left-li">
-                <a href="#">Nam</a>
-                <ul>
-                  <li><a href="">Hàng nam mới về</a></li>
-                  <li><a href="">Hàng nam mới về 1</a></li>
-                  <li><a href="">Hàng nam mới về 2</a></li>
-                  <li><a href="">Hàng nam mới về 3</a></li>
-                  <li><a href="">Hàng nam mới về 4</a></li>
-                </ul>
-              </li>
-              <li className="category-left-li"><a href="#">Trẻ em</a></li>
-              <li className="category-left-li"><a href="#">Bộ sưu tập</a></li>
-              <li className="category-left-li"><a href="#">Đồ bảo hộ</a></li>
+              {menus.map((menu, index) => (
+                <li
+                  key={index}
+                  className={`category-left-li ${
+                    expandedMenus.includes(index) ? 'block' : ''
+                  } ${activeSubMenu === index ? 'active' : ''}`}
+                  onClick={() => toggleMenu(index)} // Toggle menu chính
+                >
+                  <a href="#">{menu.title}</a>
+                  {menu.subItems.length > 0 && (
+                    <ul
+                      style={{
+                        maxHeight: expandedMenus.includes(index)
+                          ? `${menu.subItems.length * 40}px`
+                          : '0',
+                        overflow: 'hidden',
+                        transition: 'max-height 0.3s ease',
+                      }}
+                    >
+                      {menu.subItems.map((subItem, subIndex) => (
+                        <li
+                          key={subIndex}
+                          className={selectedSubMenu === `${index}-${subIndex}` ? 'selected' : ''} // Đổi màu khi được chọn
+                          onClick={(e) => {
+                            e.stopPropagation(); // Không đóng menu cha
+                            setSelectedSubMenu(`${index}-${subIndex}`); // Đặt submenu được chọn
+                          }}
+                        >
+                          <a href="#">{subItem}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
+
+
+          {/* Right Section */}
+
+
+
           <div className="category-right row">
             
             <div className='filter-sort row'>
@@ -287,8 +352,6 @@ const Category = () => {
               ))}
             </div>
 
-
-{/* test */}
               
               {/* More product items */}
             </div>

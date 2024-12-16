@@ -550,17 +550,27 @@ header:hover{
     margin: 0 8px;
 }
 
-
+/* Left menu  */
 .category-left{
     width: 20%;
-    border-right: 1px solid #ddd;
+    border-right: 4px solid #ddd;
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+    background-color: #cccccc28;
+    padding-top: 10px;
     padding-right: 20px;
+    border-radius: 10px;
+    padding-left: 20px;
+
 }
 
 .category-left ul {
     list-style-type: none;
     padding: 0;
+    border-radius: 10px;
+    width: 100%;
 }
+
 
 .category-left-li > a {
     padding: 12px;
@@ -570,10 +580,14 @@ header:hover{
     font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
+    border-radius: 10px;
+
 }
 
 .category-left-li:hover {
     background-color: #f0f0f0;
+    border-radius: 10px;
+
 }
 
 .category-left-li ul {
@@ -583,6 +597,7 @@ header:hover{
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.5s ease-out;
+    width: 100%;
 }
 
 .category-left-li ul li a {
@@ -592,15 +607,76 @@ header:hover{
     color: #666;
     font-size: 14px;
     transition: background-color 0.3s, color 0.3s;
+    width: 100%;
 }
 
 .category-left-li ul li a:hover {
     background-color: #e0e0e0;
+    border-radius: 10px;
+
 }
+
+
+
+
+
+/* Mới Thêm  */
+.category-left-li.block > a {
+    font-weight: bold;
+    color: #007bff; /* Màu của menu được chọn */
+  }
+  
+  .category-left-li ul li.active > a {
+    font-weight: bold;
+    color: #ff5722; /* Màu của submenu được chọn */
+  }
+  
+  .category-left-li ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .category-left-li ul li {
+    margin: 5px 0;
+    transition: color 0.2s ease;
+  }
+  
+  .category-left-li ul li a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  
+  .category-left-li ul li.active > a:hover {
+    color: #d32f2f; /* Hover state for active submenu */
+  }
+  
+  .category-left-li ul li.selected > a {
+    font-weight: bold;
+    color: #d32f2f; /* Đổi sang màu đỏ khi được chọn */
+  }
+  
+  .category-left-li ul li a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .category-left-li ul li a:hover {
+    color: #007bff; /* Hover effect */
+  }
+  
+/* ============================= */
+
+
+
+
+
+
+
 
 .category-right{
     width: 80%;
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 
