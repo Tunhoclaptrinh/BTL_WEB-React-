@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
-// import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/admin-style.css';
+import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/admin-style.css';
 
 
 
 function AdminLayout() {
   return (
     <div className="admin-container">
-      <header>
+      {/* <header>
         <h1>TOP</h1>
-      </header>
+      </header> */}
       <section className="admin-content">
         <div className="admin-content-left">
           <ul>
@@ -35,6 +35,35 @@ function AdminLayout() {
                 <li><Link to="/admin/product/list">Danh sách sản phẩm</Link></li>
               </ul>
             </li>
+            <li>
+              <a href="#">Sản phẩm</a>
+              <ul>
+                <li><Link to="/admin/product/add">Thêm sản phẩm</Link></li>
+                <li><Link to="/admin/product/list">Danh sách sản phẩm</Link></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Sản phẩm</a>
+              <ul>
+                <li><Link to="/admin/product/add">Thêm sản phẩm</Link></li>
+                <li><Link to="/admin/product/list">Danh sách sản phẩm</Link></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Sản phẩm</a>
+              <ul>
+                <li><Link to="/admin/product/add">Thêm sản phẩm</Link></li>
+                <li><Link to="/admin/product/list">Danh sách sản phẩm</Link></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Sản phẩm</a>
+              <ul>
+                <li><Link to="/admin/product/add">Thêm sản phẩm</Link></li>
+                <li><Link to="/admin/product/list">Danh sách sản phẩm</Link></li>
+              </ul>
+            </li>
+
           </ul>
         </div>
         <div className="admin-content-right">

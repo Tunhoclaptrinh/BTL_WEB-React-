@@ -11,7 +11,7 @@ const Product = () => {
     const productImgRef = useRef(null);
 
     const [activeTab, setActiveTab] = useState("detail"); // "detail" hoặc "protect"
-  const [isExpanded, setIsExpanded] = useState(false); // Trạng thái của phần mở rộng
+    const [isExpanded, setIsExpanded] = useState(false); // Trạng thái của phần mở rộng
 
   // Hàm xử lý chuyển đổi tab
   const handleTabChange = (tab) => {
@@ -228,7 +228,7 @@ const Product = () => {
                         <span style={{ color: "red" }}>*</span>
                         </p>
                         <div className="product-content-right-color-img">
-                        <img src="./images/color1.png" alt="Color Option" />
+                        <img src="/images/color1.png" alt="Color Option" />
                         </div>
                     </div>
                     <div className="product-content-right-size">
@@ -237,13 +237,6 @@ const Product = () => {
                             {product.sizes.map((size) => (
                                 <span key={size}>{size}</span>
                             ))}
-
-                        {/* <div className="size">
-                        <span>S</span>
-                        <span>M</span>
-                        <span>L</span>
-                        <span>XL</span>
-                        <span>XXL</span> */}
                         </div>
                     </div>
                     <div className="product-content-right-quantity">
@@ -251,13 +244,13 @@ const Product = () => {
                         <input type="number" min="0" defaultValue="1" />
                     </div>
                     <p style={{ color: "red" }}>Vui lòng chọn size *</p>
-                    <div className="product-content-right-button">
+                    <div className="product-content-right-button row">
                         <button onClick={handleAddToCart}>
                         <i className="fas fa-shopping-cart"></i>
                         <p>MUA HÀNG</p>
                         </button>
                         <button>
-                        <p>TÌM TẠI CỬA HÀNG</p>
+                        <p>THÊM VÀO GIỎ HÀNG</p>
                         </button>
                     </div>
                     <div className="product-content-right-icon">
@@ -275,7 +268,7 @@ const Product = () => {
                         </div>
                     </div>
                     <div className="product-content-right-qr">
-                        <img src="./images/qrcode.png" alt="QR Code" />
+                        <img src="/images/qrcode.png" alt="QR Code" />
                     </div>
                     <div className="product-content-right-bottom">
                     <div className="product-content-right-bottom-top">

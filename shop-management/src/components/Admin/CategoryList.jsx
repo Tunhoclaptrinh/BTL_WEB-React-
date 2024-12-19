@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 
 function CategoryList() {
   const [categories, setCategories] = useState([
+    { id: 1, name: 'Nam' },
+    { id: 1, name: 'Nam' },
+    { id: 1, name: 'Nam' },
+    { id: 1, name: 'Nam' },
+    { id: 1, name: 'Nam' },
+    { id: 1, name: 'Nam' },
+    { id: 1, name: 'Nam' },
+
     { id: 1, name: 'Nam' }
   ]);
 
@@ -24,7 +32,7 @@ function CategoryList() {
             <th>STT</th>
             <th>ID</th>
             <th>CATEGORY</th>
-            <th>ACTION</th>
+            <th className='action'>ACTION</th>
           </tr>
         </thead>
         <tbody>

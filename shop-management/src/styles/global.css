@@ -952,11 +952,12 @@ header:hover{
     margin-bottom: 20px;
 }
 .product-content-right-button button{
-    width: 150px;
+    width: 170px;
     height: 40px;
     display: block;
     margin: 20px 0 12px;
     transition: all 0.3s ease;
+    margin-right: 20px;;
 }
 .product-content-right-button button:first-child{
     display: flex;
@@ -1153,6 +1154,7 @@ header:hover{
     color: #333333;
 }
 .product-related-item{
+    /* display: block; */
     width: calc((100% - 60px)/5);
     text-align: center;
     margin: 0 6px;

@@ -172,29 +172,17 @@ const Category = () => {
 
   ];
 
-
+  // Ông expandedMenus đang là 1 thì dùng selectedSubMenu để chuyển expandedMenus thành 2
   const [expandedMenus, setExpandedMenus] = useState([]); // Track which submenus are expanded
-  // const [expandedMenu, setExpandedMenu] = useState(null); // Track the currently expanded menu
   const [activeSubMenu, setActiveSubMenu] = useState(null); // Track the currently active submenu
 
 
   const [selectedSubMenu, setSelectedSubMenu] = useState(null); // Submenu được chọn
 
-
-  // const toggleMenu = (menuIndex) => {
-  //   setExpandedMenu((prev) => (prev === menuIndex ? null : menuIndex)); // Toggle the main menu
-  // };
-
   const toggleMenu = (menuIndex) => {
-      // Toggle the activeSubMenu state
-      setActiveSubMenu((prevMenu) => (prevMenu === menuIndex ? null : menuIndex));
+    // Toggle the activeSubMenu state
+    setActiveSubMenu((prevMenu) => (prevMenu === menuIndex ? null : menuIndex)); // call back lại với giá trị trước đó,callback có thể là nhiều lần thực thi một lần render
 
-
-    // setExpandedMenus((prevExpandedMenus) =>
-    //   prevExpandedMenus.includes(menuIndex)
-    //     ? prevExpandedMenus.filter((index) => index !== menuIndex) // Remove if already expanded
-    //     : [...prevExpandedMenus, menuIndex] // Add if not expanded
-    // );
     // Toggle trạng thái mở/đóng của menu
     setExpandedMenus((prevMenus) =>
       prevMenus.includes(menuIndex)
@@ -263,6 +251,7 @@ const Category = () => {
       </div>
       <div className="container">
         <div className="row">
+
           {/* Left Sidebar */}
           <div className="category-left">
             <ul>
@@ -306,11 +295,9 @@ const Category = () => {
 
 
           {/* Right Section */}
-
-
-
           <div className="category-right row">
-            
+
+            {/* Right Sidebar */}
             <div className='filter-sort row'>
               <div className="category-right-top-item">
                 <p>Hàng nữ mới về</p>
@@ -330,20 +317,9 @@ const Category = () => {
                 </select>
               </div>
             </div>
-            <div className="category-rigt-content row" id="products">
 
-              {/* {filteredAndSortedProducts.map((product) => (
-                <div className="category-right-content-item" key={product.id}>
-                  <Link to={`/product/${product.id}`}>
-                    <img src={product.image} alt={product.name} />
-                    <h1>{product.name}</h1>
-                    <p className="price">
-                      {product.price}
-                      <sup>Đ</sup>
-                    </p>
-                  </Link>
-                </div>
-              ))} */}
+            {/* Right - product */}
+            <div className="category-rigt-content row" id="products">
               <div className="category-rigt-content row" id="products">
               {currentProducts.map((product) => (
                 <div className="category-right-content-item" key={product.id}>
@@ -357,7 +333,7 @@ const Category = () => {
             </div>
 
               
-              {/* More product items */}
+            {/*Right Others */}
             </div>
             <div className="category-right-bottom row">
               <div className="category-right-bottom-items">
