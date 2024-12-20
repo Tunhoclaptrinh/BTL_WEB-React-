@@ -9,6 +9,7 @@ import Payment from '../pages/Payment';
 import Delivery from '../pages/Delivery';
 
 import NotFoundPage from "../pages/NotFoundPage";
+import AdminLayout from '../components/Admin/AdminLayout';
 
 export const routes = [
    {
@@ -63,6 +64,27 @@ export const routes = [
     isShowHeader: true,
     isShowFooter: true
    },
+
+
+//Admin
+   {
+      path: "/admin",
+      page: AdminLayout,
+      isShowHeader: true,
+      isShowFooter: true
+     },
+     {
+      path: "/delivery",
+      page: Delivery,
+      isShowHeader: true,
+      isShowFooter: true
+     },
+     {
+      path: "/Home",
+      page: Home,
+      isShowHeader: true,
+      isShowFooter: true
+     },
 
 
 

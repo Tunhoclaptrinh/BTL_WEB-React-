@@ -16,10 +16,10 @@ import Product from './pages/Product';
 
 // Admin
 
-// import AdminLayout from './components/Admin/AdminLayout';
-// import AddCategory from './components/Admin/AddCategory';
-// import CategoryList from './components/Admin/CategoryList';
-// import AddProduct from './components/Admin/AddProduct';
+import AdminLayout from './components/Admin/AdminLayout';
+import AddCategory from './components/Admin/AddCategory';
+import CategoryList from './components/Admin/CategoryList';
+import AddProduct from './components/Admin/AddProduct';
 
 
 
@@ -47,14 +47,17 @@ function App() {
             <Route path="/payment" element={<Payment />} />
             <Route path="/delivery" element={<Delivery />} />
             <Route path="/home" element={<Home />} /> */}
-
+                    <Route path="/admin" element={<AdminLayout />}></Route>
+                    <Route path="/admin/category/add" element={<AddCategory />} />
+                    <Route path="/admin/category/list" element={<CategoryList />} />
+                    <Route path="admin/product/add" element={<AddProduct />} />
             
             <Route path="/product/:productId" element={<Product />} />
 
 
             {routes.map((route) => {
               const Page = route.page
-              const Layout = route.isShowHeader ? DefaultComponent : Fragment;
+              const Layout = DefaultComponent;
               return (
                 <Route key={route.path} path={route.path} element={
                   <Layout>

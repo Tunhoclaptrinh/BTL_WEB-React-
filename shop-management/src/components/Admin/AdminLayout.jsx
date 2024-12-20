@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/admin-style.css';
+import Header from '../Header/Header';
 
 
 
@@ -11,6 +12,7 @@ function AdminLayout() {
       {/* <header>
         <h1>TOP</h1>
       </header> */}
+      <Header/>
       <section className="admin-content">
         <div className="admin-content-left">
           <ul>

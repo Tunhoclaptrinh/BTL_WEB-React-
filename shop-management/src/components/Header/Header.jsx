@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import throttle from 'lodash/throttle';
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css';
-
-
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
