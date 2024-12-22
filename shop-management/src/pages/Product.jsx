@@ -4,6 +4,7 @@ import ButtonWhite from '../components/Button/ButtonWhite';
 import ButtonYellow from '../components/Button/ButtonYellow';
 
 import "D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css";
+import ProductRelated from "./ProductRelated/ProductRelated";
 
 const Product = () => {
     const { productId } = useParams();
@@ -45,13 +46,12 @@ const Product = () => {
         color: "Xanh cổ vịt nhạt",
         sizes: ["S", "M", "L", "XL", "XXL"],
       },
-
+  
       { 
         id: 3, 
         name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "490.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-
+        price: "1.490.000", 
+        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
         description: "Chi tiết sản phẩm 2", 
         color: "Xanh cổ vịt nhạt",
         sizes: ["S", "M", "L", "XL", "XXL"],
@@ -60,12 +60,40 @@ const Product = () => {
         id: 4, 
         name: "ÁO THUN CỔ TRÒN MS67890", 
         price: "490.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-
+        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
         description: "Chi tiết sản phẩm 2", 
         color: "Xanh cổ vịt nhạt",
         sizes: ["S", "M", "L", "XL", "XXL"],
       },
+  
+      { 
+        id: 5, 
+        name: "ÁO THUN CỔ TRÒN MS67890", 
+        price: "490.000", 
+        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+        description: "Chi tiết sản phẩm 2", 
+        color: "Xanh cổ vịt nhạt",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+      },
+      { 
+        id: 6, 
+        name: "ÁO THUN CỔ TRÒN MS67890", 
+        price: "400.000", 
+        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+        description: "Chi tiết sản phẩm 2", 
+        color: "Xanh cổ vịt nhạt",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+      },
+      { 
+        id: 7, 
+        name: "ÁO THUN CỔ TRÒN MS67890", 
+        price: "90.000", 
+        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+        description: "Chi tiết sản phẩm 2", 
+        color: "Xanh cổ vịt nhạt",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+      },
+  
     ];
   
     // Tìm sản phẩm tương ứng
@@ -323,37 +351,9 @@ const Product = () => {
       </section>
 
       <section className="product-related">
-        <div className="product-related-tittle">
-          <p>Sản phẩm liên quan</p>
-        </div>
-        {/* <div className="product-content row">
-          {Array(5)
-            .fill(null)
-            .map((_, idx) => (
-              <div className="product-related-item" key={idx}>
-                <img src="./images/sp1.3.webp" alt={`Related Product ${idx + 1}`} />
-                <h1>Áo thun cổ tròn</h1>
-                <p>
-                  490.000<sup>Đ</sup>
-                </p>
-              </div>
-            ))}
-        </div> */}
-        <div className="product-content row">
-          {products
-            .filter((p) => p.id !== product.id)
-            .map((relatedProduct) => (
-              <div className="product-related-item" key={relatedProduct.id}>
-                <img src={relatedProduct.image[0]} alt={relatedProduct.name} />
-                <h1>{relatedProduct.name}</h1>
-                <p>
-                  {relatedProduct.price}
-                  <sup>Đ</sup>
-                </p>
-              </div>
-            ))}
-        </div>
+        <ProductRelated />
       </section>
+
     </>
   );
 };

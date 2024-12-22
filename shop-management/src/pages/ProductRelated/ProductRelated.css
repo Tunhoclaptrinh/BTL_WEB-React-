@@ -1,0 +1,35 @@
+/*--------------------- product.related ----------------------------------------------*/
+
+.product-related{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+}
+.product-related-tittle {
+    margin-bottom: 30px;
+}
+.product-related-tittle p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+}
+.product-related-item{
+    /* display: block; */
+    width: calc(20% - 20px);
+    text-align: center;
+    margin: 30px;
+}
+.product-related-item img {
+    width: 100%;
+}
+.product-related-item h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    margin-top: 8px;
+}
+.product-related-item p {
+    font-size: 14px;
+}

@@ -26,7 +26,7 @@ const Category = () => {
       id: 1, 
       name: "ĐẦM ÔM HỌA TIẾT MS12345", 
       price: "60.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 1", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL"],
@@ -35,7 +35,7 @@ const Category = () => {
       id: 2, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -45,7 +45,7 @@ const Category = () => {
       id: 3, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "1.490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -54,7 +54,7 @@ const Category = () => {
       id: 4, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -64,7 +64,7 @@ const Category = () => {
       id: 5, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -73,7 +73,7 @@ const Category = () => {
       id: 6, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "400.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -82,7 +82,7 @@ const Category = () => {
       id: 7, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -91,7 +91,7 @@ const Category = () => {
       id: 8, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "90.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -100,7 +100,7 @@ const Category = () => {
       id: 9, 
       name: "ĐẦM ÔM HỌA TIẾT MS12345", 
       price: "60.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 1", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL"],
@@ -109,7 +109,7 @@ const Category = () => {
       id: 10, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -119,7 +119,7 @@ const Category = () => {
       id: 11, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "1.490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -128,7 +128,7 @@ const Category = () => {
       id: 12, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -138,7 +138,7 @@ const Category = () => {
       id: 13, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -147,7 +147,7 @@ const Category = () => {
       id: 14, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "400.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -156,7 +156,7 @@ const Category = () => {
       id: 15, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "490.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -165,7 +165,7 @@ const Category = () => {
       id: 16, 
       name: "ÁO THUN CỔ TRÒN MS67890", 
       price: "90.000", 
-      image: "./images/sp1.webp", 
+      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
       description: "Chi tiết sản phẩm 2", 
       color: "Xanh cổ vịt nhạt",
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -321,7 +321,7 @@ const Category = () => {
 
             {/* Right - product */}
             <div className="category-rigt-content row" id="products">
-              <div className="category-rigt-content row" id="products">
+              {/* <div className="category-rigt-content row" id="products"> */}
               {/* {currentProducts.map((product) => (
                 <div className="category-right-content-item" key={product.id}>
                   <Link to={`/product/${product.id}`}>
@@ -334,7 +334,7 @@ const Category = () => {
               {currentProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
-            </div>
+              {/* </div> */}
 
               
             {/*Right Others */}

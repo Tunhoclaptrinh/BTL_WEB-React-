@@ -3,7 +3,7 @@ import Home from '../pages/Home';
 
 import Product from '../pages/Product';
 import Category from '../pages/Category';
-import ProductRelated from '../pages/ProductRelated';
+import ProductRelated from '../pages/ProductRelated/ProductRelated';
 import Cart from '../pages/Cart/Cart';
 import Payment from '../pages/Payment';
 import Delivery from '../pages/Delivery';

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Slider from '../components/Slider/Slider';
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css';
 import ButtonWhite from '../components/Button/ButtonWhite';
+import ProductRelated from './ProductRelated/ProductRelated';
 
 
 const Home = () => {
@@ -18,17 +19,7 @@ const Home = () => {
       <Slider />
 
       <section className="product-related">
-        <h2>Featured Products</h2>
-          <div className="related-items">
-                {Homeproducts.map((product) => (
-                  <div key={product.id} className="product-card">
-                    <img src={product.img} alt={product.name} />
-                    <h3>{product.name}</h3>
-                    <p>{product.price}Đ</p>
-                    <Link to={`/product/${product.id}`}>View Details</Link>
-                  </div>
-                ))}
-              </div>
+        <ProductRelated  title='Sản phẩm HOT'/>
       </section>
 
       {/* Button */}
