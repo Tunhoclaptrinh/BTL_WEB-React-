@@ -1,6 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css';
+import ButtonWhite from '../components/Button/ButtonWhite';
+
 
 
 const Delivery = () => {
@@ -96,9 +98,22 @@ const Delivery = () => {
                   <span>&#171;</span>
                   <p> Quay lại giỏ hàng</p>
                 </a>
-                <button onClick={handleCheckout}>
-                  <p style={{ fontWeight: "bold" }}>THANH TOÁN VÀ GIAO HÀNG</p>
-                </button>
+                <Link to= '/payment'>
+                  <ButtonWhite 
+                    className="" 
+                    label='THANH TOÁN VÀ GIAO HÀNG'
+                    style={{
+                      width: '',
+                      height: '40px',
+                      borderRadius: '0px',
+                      fontSize: '16px',
+                      padding: '6px 12px',
+                      justifyContent: 'space-between',
+                      fontWeight: "bold",
+                      marginRight: '12px',
+                      display: 'inline-block'
+                    }}
+                  /></Link>
               </div>
             </div>
             <div className="delivery-content-right">

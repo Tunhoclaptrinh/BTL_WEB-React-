@@ -1,0 +1,32 @@
+/* components/Button/Button.css */
+.button-wrapper-yellow {
+    text-align: center;
+}
+.button-wrapper-yellow button{
+text-align: center;
+background-color: rgb(255, 255, 255);
+
+}
+
+.button-link-yellow {
+font-size: larger;
+display: inline-block;
+padding: 20px;
+border: 2px solid rgb(173, 143, 8);
+border-radius: 7px;
+text-decoration: none;
+color: rgb(173, 143, 8);
+transition: background-color 0.3s, color 0.3s ease;
+text-align: center;
+cursor: pointer;
+
+}
+
+.button-link-yellow:hover {
+background-color: rgb(173, 143, 8);
+color: white;
+}
+  
+
+
+  

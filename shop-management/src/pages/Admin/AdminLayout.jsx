@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
-import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/admin-style.css';
-import Header from '../Header/Header';
+// import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/admin-style.css';
+import Header from '../../components/Header/Header';
 
 
 

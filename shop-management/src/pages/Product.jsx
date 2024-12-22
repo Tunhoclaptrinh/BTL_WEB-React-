@@ -1,5 +1,7 @@
 import React, { useRef, useEffect,useState  } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import ButtonWhite from '../components/Button/ButtonWhite';
+import ButtonYellow from '../components/Button/ButtonYellow';
 
 import "D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css";
 
@@ -68,52 +70,6 @@ const Product = () => {
   
     // Tìm sản phẩm tương ứng
     const product = products.find((p) => p.id === parseInt(productId));
-  //   // Hàm xử lý zoom
-  // useEffect(() => {
-  //   const handleZoom = () => {
-  //     const img = productImgRef.current;
-  //     const lens = zoomLensRef.current;
-  //     const result = zoomResultRef.current;
-
-  //     const cx = result.offsetWidth / lens.offsetWidth;
-  //     const cy = result.offsetHeight / lens.offsetHeight;
-
-  //     result.style.backgroundImage = `url(${img.src})`;
-  //     result.style.backgroundSize = `${img.width * cx}px ${img.height * cy}px`;
-
-  //     const getCursorPos = (e) => {
-  //       const rect = img.getBoundingClientRect();
-  //       const x = e.pageX - rect.left - window.pageXOffset;
-  //       const y = e.pageY - rect.top - window.pageYOffset;
-  //       return { x, y };
-  //     };
-
-  //     const moveLens = (e) => {
-  //       e.preventDefault();
-  //       const pos = getCursorPos(e);
-  //       let x = pos.x - lens.offsetWidth / 2;
-  //       let y = pos.y - lens.offsetHeight / 2;
-
-  //       if (x > img.width - lens.offsetWidth) x = img.width - lens.offsetWidth;
-  //       if (x < 0) x = 0;
-  //       if (y > img.height - lens.offsetHeight) y = img.height - lens.offsetHeight;
-  //       if (y < 0) y = 0;
-
-  //       lens.style.left = `${x}px`;
-  //       lens.style.top = `${y}px`;
-  //       result.style.backgroundPosition = `-${x * cx}px -${y * cy}px`;
-  //     };
-
-  //     lens.addEventListener("mousemove", moveLens);
-  //     img.addEventListener("mousemove", moveLens);
-  //     lens.addEventListener("touchmove", moveLens);
-  //     img.addEventListener("touchmove", moveLens);
-  //   };
-
-  //   if (product) {
-  //     handleZoom();
-  //   }
-  // }, [product]);
 
   const handleMouseMove = (e) => {
     const img = productImgRef.current;
@@ -245,13 +201,49 @@ const Product = () => {
                     </div>
                     <p style={{ color: "red" }}>Vui lòng chọn size *</p>
                     <div className="product-content-right-button row">
-                        <button onClick={handleAddToCart}>
-                        <i className="fas fa-shopping-cart"></i>
-                        <p>MUA HÀNG</p>
-                        </button>
-                        <button>
+                        
+
+                        <ButtonWhite
+                          className="" 
+                          onClick={handleAddToCart}
+                          icon='fas fa-shopping-cart'
+                          label=' - MUA HÀNG'
+                          style={{
+                            width: '190px',
+                            height: '40px',
+                            borderRadius: '0px',
+                            fontSize: '14px',
+                            padding: '6px 12px',
+                            justifyContent: 'space-between',
+                            marginRight: '12px',
+                            display: 'inline-block',
+                            margin: '40px 40px 40px 0',
+
+                          }}
+                        />
+
+
+                        {/* <button>
                         <p>THÊM VÀO GIỎ HÀNG</p>
-                        </button>
+                        </button> */}
+
+                        <ButtonYellow
+                          className="" 
+                          onClick={handleAddToCart}
+                          label='THÊM VÀO GIỎ HÀNG'
+                          style={{
+                            width: '190px',
+                            height: '40px',
+                            borderRadius: '0px',
+                            fontSize: '14px',
+                            padding: '6px 12px',
+                            justifyContent: 'space-between',
+                            marginRight: '12px',
+                            display: 'inline-block',
+                            margin: '40px 40px 40px 12px',
+
+                          }}
+                        />  
                     </div>
                     <div className="product-content-right-icon">
                         <div className="product-content-right-icon-item">

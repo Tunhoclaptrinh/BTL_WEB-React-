@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/ButtonWhite";
+import ButtonBlack from "../../components/Button/ButtonBlack";
 
 
 const CartSummary = ({ subtotal }) => {
@@ -55,10 +57,39 @@ const CartSummary = ({ subtotal }) => {
             Mua thêm {(1000000 - subtotal).toLocaleString("it-IT")} Đ để được miễn phí ship!
           </p>
         )}
-      </div>
+      </div >
       <div className="cart-content-right-button">
-        <button onClick={handleContinueShopping}>TIẾP TỤC MUA SẮM</button>
-        <button onClick={handleCheckout}>THANH TOÁN</button>
+        {/* <button onClick={handleContinueShopping}>TIẾP TỤC MUA SẮM</button> */}
+        {/* <button onClick={handleCheckout}>THANH TOÁN</button> */}
+                  <Button
+                    onClick={handleContinueShopping}
+                    className="" 
+                    label='TIẾP TỤC MUA SẮM'
+                    style={{
+                      height: '40px',
+                      borderRadius: '0px',
+                      fontSize: '16px',
+                      padding: '6px 12px',
+                      fontWeight: "bold",
+                      margin: '20px',
+                      display: 'inline-block'
+                    }}
+                  />
+                  <ButtonBlack
+                    onClick={handleCheckout}
+                    className="" 
+                    label='THANH TOÁN'
+                    style={{
+                      height: '40px',
+                      borderRadius: '0px',
+                      fontSize: '16px',
+                      padding: '6px 12px',
+                      fontWeight: "bold",
+                      margin: '20px 0px 20px 130px',
+                      display: 'inline-block',
+                      border: '2px solid rgb(0, 0, 0)',
+                    }}
+                  />
       </div>
       <div className="cart-content-right-login">
         <p>Tài khoản NguynTUN</p>

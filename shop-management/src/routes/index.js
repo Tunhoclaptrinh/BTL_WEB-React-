@@ -8,8 +8,13 @@ import Cart from '../pages/Cart/Cart';
 import Payment from '../pages/Payment';
 import Delivery from '../pages/Delivery';
 
+
+import SignUpPage from '../pages/SignUpPage/SignUpPage';
+import SignInPage from '../pages/SignInPage/SignInPage'
+
 import NotFoundPage from "../pages/NotFoundPage";
-import AdminLayout from '../components/Admin/AdminLayout';
+import AdminLayout from '../pages/Admin/AdminLayout';
+
 
 export const routes = [
    {
@@ -64,6 +69,19 @@ export const routes = [
     isShowHeader: true,
     isShowFooter: true
    },
+   {
+   path: "/sign-in",
+   page: SignInPage,
+   isShowHeader: false,
+   isShowFooter: false,
+   },
+   {
+   path: "/sign-up",
+   page: SignUpPage,
+   isShowHeader: false,
+   isShowFooter: false,
+   },
+
 
 
 //Admin
@@ -73,18 +91,7 @@ export const routes = [
       isShowHeader: true,
       isShowFooter: true
      },
-     {
-      path: "/delivery",
-      page: Delivery,
-      isShowHeader: true,
-      isShowFooter: true
-     },
-     {
-      path: "/Home",
-      page: Home,
-      isShowHeader: true,
-      isShowFooter: true
-     },
+
 
 
 

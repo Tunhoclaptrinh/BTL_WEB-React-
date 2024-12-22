@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from '../components/Slider/Slider';
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css';
+import ButtonWhite from '../components/Button/ButtonWhite';
 
 
 const Home = () => {
@@ -13,7 +14,9 @@ const Home = () => {
 
   return (
     <div className="home">
+      {/* Slider */}
       <Slider />
+
       <section className="product-related">
         <h2>Featured Products</h2>
           <div className="related-items">
@@ -27,9 +30,19 @@ const Home = () => {
                 ))}
               </div>
       </section>
-      <div className="view_all">
-        <Link to="/category">View All Products</Link>
-      </div>
+
+      {/* Button */}
+      <Link to="/category">
+        <ButtonWhite 
+          className="view-all-button" 
+          label='View All Products'
+          style={{
+            width: '98%',
+            margin: '15px 5% 50px 15px',
+            borderRadius: '7px',
+            marginBottom: '50px',
+          }}
+        /></Link>
     </div>
   );
 };

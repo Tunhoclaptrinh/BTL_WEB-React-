@@ -1,0 +1,24 @@
+.product-content-right-button button:first-child {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #ffffff;
+    border: 2px solid black;
+    cursor: pointer;
+    align-items: center;
+}
+.product-content-right-button button:first-child:hover {
+    background-color: #000;
+    color: white;
+}
+.product-content-right-button button:last-child {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(173, 143, 8);
+    color: rgb(173, 143, 8);
+    cursor: pointer;
+    align-items: center;
+}
+.product-content-right-button button:last-child:hover {
+    background-color: rgb(173, 143, 8);
+    color: white;
+}
+  

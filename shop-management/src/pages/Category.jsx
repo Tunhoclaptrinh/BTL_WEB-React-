@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom"; // Import Link
+import ProductCard from '../components/ProductCard/ProductCard';
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css';  // Ensure the CSS file is imported
 
 const Category = () => {
@@ -321,7 +322,7 @@ const Category = () => {
             {/* Right - product */}
             <div className="category-rigt-content row" id="products">
               <div className="category-rigt-content row" id="products">
-              {currentProducts.map((product) => (
+              {/* {currentProducts.map((product) => (
                 <div className="category-right-content-item" key={product.id}>
                   <Link to={`/product/${product.id}`}>
                     <img src={product.image} alt={product.name} />
@@ -329,6 +330,9 @@ const Category = () => {
                     <p className="price">{product.price}<sup>Đ</sup></p>
                   </Link>
                 </div>
+              ))} */}
+              {currentProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
 

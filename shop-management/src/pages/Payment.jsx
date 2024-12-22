@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css';
+import ButtonWhite from "../components/Button/ButtonWhite";
+import { Link } from "react-router-dom";
+import ButtonBlack from "../components/Button/ButtonBlack";
 
 const Payment = () => {
   const [selectedDelivery, setSelectedDelivery] = useState("express");
@@ -115,15 +118,40 @@ const Payment = () => {
             {/* Discount Codes */}
             <div className="payment-content-right-button">
               <input type="text" placeholder="Mã giảm giá/quà tặng" />
-              <button>
-                <i className="fas fa-check"></i>
-              </button>
+              <ButtonBlack
+                className="fas fa-check" 
+                icon=''
+                style={{
+                  width: '',
+                  height: '40px',
+                  borderRadius: '0px',
+                  fontSize: '16px',
+                  padding: '6px 12px',
+                  justifyContent: 'space-between',
+                  fontWeight: "bold",
+                  marginRight: '12px',
+                  display: 'inline-block'
+                }}
+              />
             </div>
             <div className="payment-content-right-button">
               <input type="text" placeholder="Mã cộng tác viên" />
-              <button>
-                <i className="fas fa-check"></i>
-              </button>
+              <ButtonBlack
+                className="fas fa-check" 
+                icon=''
+                style={{
+                  width: '',
+                  height: '40px',
+                  borderRadius: '0px',
+                  fontSize: '16px',
+                  padding: '6px 12px',
+                  justifyContent: 'space-between',
+                  fontWeight: "bold",
+                  marginRight: '12px',
+                  display: 'inline-block'
+                }}
+              />
+              
             </div>
 
             {/* Employee Code */}
@@ -181,7 +209,21 @@ const Payment = () => {
 
         {/* Proceed Button */}
         <div className="payment-content-right-payment">
-          <button>TIẾP TỤC THANH TOÁN</button>
+          <ButtonWhite
+            className="" 
+            label='TIẾP TỤC THANH TOÁN'
+            style={{
+              width: '',
+              height: '40px',
+              borderRadius: '0px',
+              fontSize: '16px',
+              padding: '6px 12px',
+              justifyContent: 'space-between',
+              fontWeight: "bold",
+              marginRight: '12px',
+              display: 'inline-block'
+            }}
+          />
         </div>
       </div>
     </section>
