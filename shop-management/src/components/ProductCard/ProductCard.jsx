@@ -6,9 +6,17 @@ const ProductCard = ({ product }) => {
   return (
     <div className="category-right-content-item" key={product.id}>
       <Link to={`/product/${product.id}`}>
-        <img src={product.image[0]} alt={product.name} />
+        <div className='product-card-image'>
+          <img src={product.image[0]} alt={product.name} />
+        </div>
         <h1>{product.name}</h1>
-        <p className="price">{product.price}<sup>Đ</sup></p>
+        <p className="price">{product.price}<sup>Đ</sup> <span style={{
+          fontSize: '14px',
+          color: '#000',
+          marginLeft: '10px'
+        }}>Số lượng: {product.quantity}</span></p>
+
+        {/* {alert(product.images)} */}
       </Link>
     </div>
   );

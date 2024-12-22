@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Link } from "react-router-dom"; // Import Link
+import axios from 'axios';
 import ProductCard from '../components/ProductCard/ProductCard';
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css';  // Ensure the CSS file is imported
 
@@ -7,7 +8,29 @@ const Category = () => {
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('');
   const [currentPage, setCurrentPage] = useState(1); // Track the current page
+  const [products, setProducts] = useState([]); // State for fetched products
+  const [loading, setLoading] = useState(true); // Loading state
   const productsPerPage = 8; // Number of products to display per page
+
+
+
+  // Fetch products from API
+  useEffect(() => {
+    // Fetch products from API
+    axios.get('http://localhost:3000/products')
+      .then(response => {
+        const fetchedProducts = response.data.map(product => ({
+          ...product,
+          image: JSON.parse(product.image), // Convert image string to array
+        }));
+        setProducts(fetchedProducts);
+      })
+      .catch(error => {
+        console.error("Error fetching products:", error);
+      });
+  }, []);
+
+  
 
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
@@ -21,157 +44,138 @@ const Category = () => {
   
 
 
-  const products = [
-    { 
-      id: 1, 
-      name: "ĐẦM ÔM HỌA TIẾT MS12345", 
-      price: "60.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 1", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL"],
-    },
-    { 
-      id: 2, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
+  // const products = [
+  //   { 
+  //     id: 1, 
+  //     name: "ĐẦM ÔM HỌA TIẾT MS12345", 
+  //     price: "60.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 1", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL"],
+  //   },
+  //   { 
+  //     id: 2, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
 
-    { 
-      id: 3, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "1.490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-    { 
-      id: 4, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
+  //   { 
+  //     id: 3, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "1.490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
+  //   { 
+  //     id: 4, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
 
-    { 
-      id: 5, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-    { 
-      id: 6, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "400.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-    { 
-      id: 7, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-    { 
-      id: 8, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "90.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },  
-    { 
-      id: 9, 
-      name: "ĐẦM ÔM HỌA TIẾT MS12345", 
-      price: "60.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 1", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL"],
-    },
-    { 
-      id: 10, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
+  //   { 
+  //     id: 5, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
+  //   { 
+  //     id: 6, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "400.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
+  //   { 
+  //     id: 7, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
+  //   { 
+  //     id: 8, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "90.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },  
+  //   { 
+  //     id: 9, 
+  //     name: "ĐẦM ÔM HỌA TIẾT MS12345", 
+  //     price: "60.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 1", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL"],
+  //   },
+  //   { 
+  //     id: 10, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
 
-    { 
-      id: 11, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "1.490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-    { 
-      id: 12, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
+  //   { 
+  //     id: 11, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "1.490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
+  //   { 
+  //     id: 12, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
 
-    { 
-      id: 13, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-    { 
-      id: 14, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "400.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-    { 
-      id: 15, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "490.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-    { 
-      id: 16, 
-      name: "ÁO THUN CỔ TRÒN MS67890", 
-      price: "90.000", 
-      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-      description: "Chi tiết sản phẩm 2", 
-      color: "Xanh cổ vịt nhạt",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-    },
-
-  ];
+  //   { 
+  //     id: 13, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "490.000", 
+  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   },
+  //   { 
+  //     id: 14, 
+  //     name: "ÁO THUN CỔ TRÒN MS67890", 
+  //     price: "400.000", 
+  //      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+  //     description: "Chi tiết sản phẩm 2", 
+  //     color: "Xanh cổ vịt nhạt",
+  //     sizes: ["S", "M", "L", "XL", "XXL"],
+  //   }
+  // ];
 
   // Ông expandedMenus đang là 1 thì dùng selectedSubMenu để chuyển expandedMenus thành 2
   const [expandedMenus, setExpandedMenus] = useState([]); // Track which submenus are expanded

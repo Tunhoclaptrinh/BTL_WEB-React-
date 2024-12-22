@@ -56,11 +56,11 @@ const Slider = () => {
       </div>
       
       {/* Navigation Controls */}
-      <div className="slider-nav">
-        <button onClick={prevSlide} aria-label="Previous Slide">
+      <div className="slider-nav" >
+        <button onClick={prevSlide} aria-label="Previous Slide" style={{backgroundColor: 'transparent'}}>
           <span className="fas fa-chevron-left"></span>
         </button>
-        <button onClick={nextSlide} aria-label="Next Slide">
+        <button onClick={nextSlide} aria-label="Next Slide" style={{backgroundColor: 'transparent'}}>
           <span className="fas fa-chevron-right"></span>
         </button>
       </div>

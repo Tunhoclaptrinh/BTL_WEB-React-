@@ -274,6 +274,8 @@ header:hover{
 /* Footer Styles */
 .footer {
     background-color: #f2f2f2 !important;
+    border-top: 2px solid #dddddd;
+    box-shadow: 2px solid #dddddd;
     padding: 20px;
     text-align: center;
     border-top-left-radius: 20px;

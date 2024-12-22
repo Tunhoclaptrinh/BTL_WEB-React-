@@ -7,13 +7,17 @@ import ProductRelated from '../pages/ProductRelated/ProductRelated';
 import Cart from '../pages/Cart/Cart';
 import Payment from '../pages/Payment';
 import Delivery from '../pages/Delivery';
+import NotFoundPage from "../pages/NotFoundPage";
 
 
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
-import SignInPage from '../pages/SignInPage/SignInPage'
+import SignInPage from '../pages/SignInPage/SignInPage';
+import UserDetails from '../pages/UsersDetails/UserDetails';
 
-import NotFoundPage from "../pages/NotFoundPage";
+
+
 import AdminLayout from '../pages/Admin/AdminLayout';
+import AdminProductManager from '../pages/Admin/AdminProductManager';
 
 
 export const routes = [
@@ -81,6 +85,19 @@ export const routes = [
    isShowHeader: false,
    isShowFooter: false,
    },
+   {
+   path: "/admin/product/manager",
+   page: AdminProductManager,
+   isShowHeader: false,
+   isShowFooter: false,
+   },
+   {
+   path: "/user-details",
+   page: UserDetails,
+   isShowHeader: false,
+   isShowFooter: false,
+   },
+   
 
 
 

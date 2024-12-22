@@ -133,7 +133,7 @@ const Header = () => {
           <i className="fas fa-search"></i>
         </li>
         <li><Link to="/wishlist" className="fa fa-paw"></Link></li>
-        <li><Link to="/profile" className="fa fa-user"></Link></li>
+        <li><Link to="/user-details" className="fa fa-user"></Link></li>
         <li><Link to="/cart" className="fa fa-shopping-bag"></Link></li>
       </div>
     </header>

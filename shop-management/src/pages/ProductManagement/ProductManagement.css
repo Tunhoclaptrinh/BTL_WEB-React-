@@ -1,0 +1,202 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+.product-management {
+    position: relative;
+    width: 100%;
+    height:auto;
+    margin: 0 auto;
+    padding: 30px;
+    padding-top:27px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Search bar styles */
+  .product-management .search-bar {
+    margin-bottom: 20px;
+  }
+  
+  .product-management  .search-bar label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .search-bar input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Table styles */
+  .product-management table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    /* margin-left: 30px; */
+  }
+  
+  .product-management table th {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 2px solid #000000;
+  }
+
+  .product-management table td {
+    padding: 15px;
+    width: calc(100% / 5);
+    /* text-align: center; */
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+
+  }
+  
+  .product-management table td:last-child {
+    padding: 15px;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .product-management table td:first-child {
+    padding: 15px;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .product-management table th {
+    background-color: #f2f2f2;
+  }
+  
+  .product-management table tr:hover {
+    background-color: #c59b9b;
+  }
+  
+  .product-management table img {
+    border-radius: 15px;
+    display: flex;
+    text-align: center; 
+    justify-content: center;
+    /* width: 100px;
+    height: 100px; */
+  }
+  
+  /* Button styles */
+  .product-management button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  button.edit {
+    background-color: #166c19;
+    color: white;
+    font-style: italic;
+  }
+  
+  button.delete {
+    background-color: #db1f1f;
+    color: rgb(255, 255, 255);
+    font-style: italic;
+  }
+  
+  button.add {
+    background-color: #ce3c74;
+    border: 2px solid #ae8787;
+    color: white;
+    margin-bottom: 20px;
+    height: 40px;
+    width: 250px;
+    font-weight: bold;
+    position: relative;
+    left: -15%;
+    top: -4px;
+  }
+  
+  /* Modal styles */
+  .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    height: auto;
+    text-align: center;
+    position: relative;
+  }
+  
+  .modal-content h3 {
+    font-size: 21px;
+    margin-top: 0;
+    margin: 0 0 10px;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin: 3px 0 5px;
+    text-align: left;
+  }
+  
+  .modal-content input {
+    display: block;
+    height: 30px;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 0.05px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+  }
+  
+  .modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .modal-content button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /*phân trang*/
+  .pagination {
+    display: flex;
+    height: 42px;
+    padding: auto;
+    margin-right: 40px;
+    color: #ce3c74;
+    /* justify-content: right;
+    align-items: right; */  
+  }

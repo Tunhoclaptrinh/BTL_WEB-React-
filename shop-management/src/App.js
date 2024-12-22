@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { routes } from "./routes/index"
 import DefaultComponent from './components/Defaultcomponent/Defaultcomponent'
+import {AuthProvider} from './components/contexts/AuthContext';
 
 
 
@@ -20,7 +21,7 @@ import Product from './pages/Product';
 // import AddCategory from './components/Admin/AddCategory';
 // import CategoryList from './components/Admin/CategoryList';
 // import AddProduct from './components/Admin/AddProduct';
-import AdminProductManager from './pages/Admin/AdminProductManager';
+
 
 
 
@@ -35,6 +36,7 @@ import "./App.css";// CSS
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <div className="App">
         {/* <Header /> */}
@@ -54,7 +56,7 @@ function App() {
             <Route path="admin/product/add" element={<AddProduct />} /> */}
             
             <Route path="/product/:productId" element={<Product />} />
-            <Route path="admin/product/manager" element={<AdminProductManager />} />
+
 
             {routes.map((route) => {
               const Page = route.page
@@ -68,12 +70,12 @@ function App() {
               )
             })}
 
-          </Routes>
+          </Routes> 
         {/* <Footer /> */}
       </div>
     </Router>
 
-
+    </AuthProvider>
 
   );
 }

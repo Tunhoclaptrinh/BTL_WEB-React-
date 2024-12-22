@@ -1,0 +1,183 @@
+.profile-container {
+  display: flex;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.profile-sidebar {
+  width: 250px;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username {
+  display: flex;
+  flex-direction: column;
+}
+
+.username span {
+  font-weight: bold;
+}
+
+.username a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.profile-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.profile-menu li {
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.profile-menu li.active {
+  color: #f53d2d;
+  font-weight: bold;
+}
+
+.profile-content, .address-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.profile-content h2, .address-content h2 {
+  margin: 0 0 10px 0;
+}
+
+.add-address-button, .save-button {
+  background-color: #f53d2d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.add-address-button:hover, .save-button:hover {
+  background-color: #e53d2d;
+}
+
+.address-list .address-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.address-info {
+  flex-grow: 1;
+}
+
+.address-info strong {
+  display: block;
+  font-weight: bold;
+}
+
+.address-info span,
+.address-info p {
+  display: block;
+}
+
+.default-label {
+  background-color: #f53d2d;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.address-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.address-actions button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.address-actions button:hover {
+  background-color: #0056b3;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.date-picker {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.profile-container {
+  display: flex;
+  gap: 20px;
+}
+
+.profile-sidebar {
+  width: 200px;
+}
+
+.address-content {
+  flex: 1;
+}
+
+.add-address-form {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.confirm-button, .cancel-button {
+  margin-right: 10px;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}

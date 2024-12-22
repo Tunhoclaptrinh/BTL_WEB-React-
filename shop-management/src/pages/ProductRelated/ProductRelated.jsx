@@ -55,12 +55,15 @@ const ProductRelated = ({title = "Sản phẩm liên quan"}) => {
         alignItems: "center",
         flexWrap: "wrap",
         margin: "",
+
+
         // padding: "0 15px",
       }}>
           {relatedProducts.map((product) => (
             <ProductCard key={product.id} product={product} style={{
               display: "flex",
               padding: "15px",
+              width: '20%',
             }} />
           ))}
       </div>
