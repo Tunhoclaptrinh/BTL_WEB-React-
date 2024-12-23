@@ -29,16 +29,28 @@ const SignUpPage = () => {
             setError('Mật khẩu không khớp.');
             return;
         }
-
+    
         try {
-            const response = await axios.post('http://localhost:3000/users', {
+            // Payload với các trường khác để trống hoặc mặc định
+            const payload = {
                 email: formData.email,
                 password: formData.password,
-            });
-
+                username: '', // Tên người dùng mặc định là rỗng
+                role: 'customer', // Vai trò mặc định
+                name: '', // Tên mặc định là rỗng
+                address: '', // Địa chỉ mặc định là rỗng
+                phone: '', // Số điện thoại mặc định là rỗng
+                membershipTier: 'bronze', // Hạng thành viên mặc định
+                totalPurchases: 0, // Số tiền mua hàng mặc định
+                createdAt: new Date().toISOString(), // Ngày tạo mặc định là hiện tại
+                lastLogin: new Date().toISOString(), // Lần đăng nhập cuối mặc định
+            };
+    
+            const response = await axios.post('http://localhost:3000/users', payload);
+    
             setSuccess('Đăng ký thành công!');
             setError('');
-            // Xử lý tiếp nếu cần (chuyển hướng hoặc làm mới trang)
+            setFormData({ email: '', password: '', confirmPassword: '' }); // Reset form
         } catch (error) {
             if (error.response) {
                 setError(error.response.data.message || 'Đăng ký thất bại.');
@@ -47,6 +59,7 @@ const SignUpPage = () => {
             }
         }
     };
+    
 
     return (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0, 0.3)', height: '100vh' }}>

@@ -1,13 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import throttle from 'lodash/throttle';
 import 'D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { UserContext } from "../../components/contexts/UserContext";
+
+
+
 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+
+
+
+
+    const { user} = useContext(UserContext); // Lấy user và hàm setUser từ context
+
+
+    // Xử lý thay đổi input
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -133,7 +146,9 @@ const Header = () => {
           <i className="fas fa-search"></i>
         </li>
         <li><Link to="/wishlist" className="fa fa-paw"></Link></li>
+        {/* <li><Link to={`/user-details/${user.id}`} className="fa fa-user"></Link></li> */}
         <li><Link to="/user-details" className="fa fa-user"></Link></li>
+
         <li><Link to="/cart" className="fa fa-shopping-bag"></Link></li>
       </div>
     </header>

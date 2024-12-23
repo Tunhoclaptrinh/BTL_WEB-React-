@@ -2,15 +2,17 @@ import React, { useRef, useEffect,useState  } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ButtonWhite from '../components/Button/ButtonWhite';
 import ButtonYellow from '../components/Button/ButtonYellow';
+import axios from "axios";
 
 import "D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css";
 import ProductRelated from "./ProductRelated/ProductRelated";
+import Header from "../components/Header/Header";
+
 
 const Product = () => {
     const { productId } = useParams();
     const navigate = useNavigate();
-    // const zoomLensRef = useRef(null);
-    // const zoomResultRef = useRef(null);
+
     const productImgRef = useRef(null);
 
     const [activeTab, setActiveTab] = useState("detail"); // "detail" hoặc "protect"
@@ -27,77 +29,129 @@ const Product = () => {
   };
 
     // Dữ liệu sản phẩm
-    const products = [
-      { 
-        id: 1, 
-        name: "ĐẦM ÔM HỌA TIẾT MS12345", 
-        price: "60.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-        description: "Chi tiết sản phẩm 1", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL"],
-      },
-      { 
-        id: 2, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "490.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
+    // const products = [
+    //   { 
+    //     id: 1, 
+    //     name: "ĐẦM ÔM HỌA TIẾT MS12345", 
+    //     price: "60.000", 
+    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+    //     description: "Chi tiết sản phẩm 1", 
+    //     color: "Xanh cổ vịt nhạt",
+    //     sizes: ["S", "M", "L", "XL"],
+    //   },
+    //   { 
+    //     id: 2, 
+    //     name: "ÁO THUN CỔ TRÒN MS67890", 
+    //     price: "490.000", 
+    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+    //     description: "Chi tiết sản phẩm 2", 
+    //     color: "Xanh cổ vịt nhạt",
+    //     sizes: ["S", "M", "L", "XL", "XXL"],
+    //   },
   
-      { 
-        id: 3, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "1.490.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-      { 
-        id: 4, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "490.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
+    //   { 
+    //     id: 3, 
+    //     name: "ÁO THUN CỔ TRÒN MS67890", 
+    //     price: "1.490.000", 
+    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+    //     description: "Chi tiết sản phẩm 2", 
+    //     color: "Xanh cổ vịt nhạt",
+    //     sizes: ["S", "M", "L", "XL", "XXL"],
+    //   },
+    //   { 
+    //     id: 4, 
+    //     name: "ÁO THUN CỔ TRÒN MS67890", 
+    //     price: "490.000", 
+    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+    //     description: "Chi tiết sản phẩm 2", 
+    //     color: "Xanh cổ vịt nhạt",
+    //     sizes: ["S", "M", "L", "XL", "XXL"],
+    //   },
   
-      { 
-        id: 5, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "490.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-      { 
-        id: 6, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "400.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
-      { 
-        id: 7, 
-        name: "ÁO THUN CỔ TRÒN MS67890", 
-        price: "90.000", 
-        image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-        description: "Chi tiết sản phẩm 2", 
-        color: "Xanh cổ vịt nhạt",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-      },
+    //   { 
+    //     id: 5, 
+    //     name: "ÁO THUN CỔ TRÒN MS67890", 
+    //     price: "490.000", 
+    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+    //     description: "Chi tiết sản phẩm 2", 
+    //     color: "Xanh cổ vịt nhạt",
+    //     sizes: ["S", "M", "L", "XL", "XXL"],
+    //   },
+    //   { 
+    //     id: 6, 
+    //     name: "ÁO THUN CỔ TRÒN MS67890", 
+    //     price: "400.000", 
+    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
+    //     description: "Chi tiết sản phẩm 2", 
+    //     color: "Xanh cổ vịt nhạt",
+    //     sizes: ["S", "M", "L", "XL", "XXL"],
+    //   },
+    //   { 
+    //     id: 7, 
+    //     name: "ÁO THUN CỔ TRÒN MS67890", 
+    //     price: "90.000", 
+    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
+    //     description: "Chi tiết sản phẩm 2", 
+    //     color: "Xanh cổ vịt nhạt",
+    //     sizes: ["S", "M", "L", "XL", "XXL"],
+    //   },
   
-    ];
+    // ];
+
+    const [product, setProduct] = useState(null); // Dữ liệu sản phẩm
+    const [loading, setLoading] = useState(true); // Trạng thái tải
+    const [error, setError] = useState(null); // Trạng thái lỗi
+  
+    useEffect(() => {
+      const fetchProduct = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3000/products/${productId}`);
+          // Chuyển đổi image từ chuỗi JSON thành mảng
+          const productData = {
+            ...response.data,
+            sizes: JSON.parse(response.data.sizes || "[]"), // Chuyển đổi `sizes` thành mảng
+            image: JSON.parse(response.data.image || "[]"),
+          };
+          setProduct(productData);
+        } catch (err) {
+          setError("Không thể tải thông tin sản phẩm.");
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchProduct();
+    }, [productId]);
+
+
+    if (loading) {
+      return <div>Đang tải thông tin sản phẩm...</div>;
+    }
+  
+    if (error) {
+      return <div className="error-message">{error}</div>;
+    }
+  
+    if (!product) {
+      return 
+      (<div className="product">
+        <div className= "product-content"> 
+            Không tìm thấy sản phẩm  <br></br>
+            Không tìm thấy sản phẩm  <br></br>
+            Không tìm thấy sản phẩm  <br></br>
+            Không tìm thấy sản phẩm  <br></br>
+            Không tìm thấy sản phẩm  <br></br>
+
+            Không tìm thấy sản phẩm  <br></br>
+            Không tìm thấy sản phẩm  <br></br>
+        </div>
+    </div>)
+
+    }
+
   
     // Tìm sản phẩm tương ứng
-    const product = products.find((p) => p.id === parseInt(productId));
+    // const product = products.find((p) => p.id === parseInt(productId));
 
   const handleMouseMove = (e) => {
     const img = productImgRef.current;
@@ -116,44 +170,12 @@ const Product = () => {
     img.style.transformOrigin = "center center";
   };
 
-  
-    if (!product) {
 
 
-      return (
-      
-      
-      
-      <div className="product">
-            <div className= "product-content"> 
-                Product not found  <br></br>
-                Product not found  <br></br>
-                Product not found  <br></br>
-                Product not found  <br></br>
-                Product not found  <br></br>
-
-                Product not found  <br></br>
-                Product not found  <br></br>
-            </div>
-        </div>
-
-
-
-        
-      );
-    }
     // Xử lý khi nhấn nút MUA HÀNG
     const handleAddToCart = () => {
       navigate("/cart", { state: { product } });
     };
-
-
-
-  
-  
-
-
-
 
 
   return (
@@ -167,12 +189,6 @@ const Product = () => {
             <div className= "product-content"> 
                 <div className="product-content-left row">
                     <div className="product-content-left-large-img zoom">
-                    {/* <img
-                      id="productImg"
-                      ref={productImgRef}
-                      src={product.image}
-                      alt={product.name}
-                    /> */}
                     <div
                       className="product-image-zoom"
                       onMouseMove={handleMouseMove}
@@ -181,19 +197,17 @@ const Product = () => {
                       <img
                         id="productImg"
                         ref={productImgRef}
-                        src={product.image[0]}
+                        src={product.image[0]} // Hình ảnh đầu tiên
                         alt={product.name}
                         className="zoomable-image"
                       />
                     </div>
-                    {/* <div ref={zoomLensRef} className="img-zoom-lens"></div>
-                    <div id="zoomResult" ref={zoomResultRef} className="zoom-result"></div> */}
+
                     </div>
                     <div className="product-content-left-small-img">
-                        <img src={product.image[1]} alt="Small 1" />
-                        <img src={product.image[2]} alt="Small 2" />
-                        {/* <img src="./images/sp1.2.webp" alt="Small 3" />
-                        <img src="./images/sp1.3.webp" alt="Small 4" /> */}
+                        {product.image.slice(1).map((img, index) => (
+                          <img key={index} src={img} alt={`Hình ${index + 2}`} />
+                        ))}
                     </div>
                 </div>
                 
@@ -201,10 +215,10 @@ const Product = () => {
                     <div className="product-content-right-name">
                         <h1>{product.name}</h1>
                         {/* <h1>Áo thun cổ tròn MS12345</h1> */}
-                        <p>MSP: SP12345</p>
+                        {/* <p>MSP: SP12345</p> */}
                     </div>
                     <div className="product-content-right-price">
-                        <p className="price">{product.price}<sup>Đ</sup></p>
+                        <p style={{color: "red"}} className="price">{product.price}<sup>Đ</sup></p>
                     </div>
                     <div className="product-content-right-color">
                         <p>
@@ -218,9 +232,12 @@ const Product = () => {
                     <div className="product-content-right-size">
                         <p>Size:</p>
                         <div className="size">
-                            {product.sizes.map((size) => (
+                            {/* {product.sizes.map((size) => (
                                 <span key={size}>{size}</span>
-                            ))}
+                            ))} */}
+                            {product.sizes.map((size, index) => (
+                            <span key={index}>{size}</span>
+                          ))}
                         </div>
                     </div>
                     <div className="product-content-right-quantity">
@@ -328,9 +345,7 @@ const Product = () => {
                         {activeTab === "detail" && (
                           <div className="product-content-right-bottom-content-detail">
                             <p>
-                              - Nếu như Cotton là ông vua chất liệu cho mùa hè với tính ưu việt về mức độ
-                              thoáng mát, thấm hút mồ hôi thì META ICE COTTON lại là phiên bản nâng cấp với
-                              nhiều tính năng vượt trội hơn thế nữa...
+                              {product.description}
                             </p>
                           </div>
                         )}

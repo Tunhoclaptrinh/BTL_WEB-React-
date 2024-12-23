@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { routes } from "./routes/index"
 import DefaultComponent from './components/Defaultcomponent/Defaultcomponent'
-import {AuthProvider} from './components/contexts/AuthContext';
+import {UserProvider } from './components/contexts/UserContext';
 
 
 
@@ -36,7 +36,7 @@ import "./App.css";// CSS
 
 function App() {
   return (
-    <AuthProvider>
+    <UserProvider>
     <Router>
       <div className="App">
         {/* <Header /> */}
@@ -55,7 +55,11 @@ function App() {
             <Route path="/admin/category/list" element={<CategoryList />} />
             <Route path="admin/product/add" element={<AddProduct />} /> */}
             
-            <Route path="/product/:productId" element={<Product />} />
+            <Route path="/product/:productId" element={
+                  <DefaultComponent>
+                    <Product/>
+                  </DefaultComponent>
+                }></Route>
 
 
             {routes.map((route) => {
@@ -75,7 +79,7 @@ function App() {
       </div>
     </Router>
 
-    </AuthProvider>
+    </UserProvider>
 
   );
 }

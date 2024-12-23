@@ -1,83 +1,212 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import '../UsersDetails/UserDetails.css';
+import React, { useContext, useState, useEffect } from "react";
+import { UserContext } from "../../components/contexts/UserContext";
+import axios from "axios";
 
-import { Table, Button, InputGroup, FormControl } from 'react-bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+const UserDetails = () => {
+    const { user, setUser, logout } = useContext(UserContext);
+    const [formData, setFormData] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [message, setMessage] = useState("");
+    const [displayData, setDisplayData] = useState(null);
 
+    // Lấy dữ liệu hiển thị từ API khi component được render
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (user) {
+                try {
+                    const response = await axios.get(`http://localhost:3000/users/${user.id}`);
+                    setDisplayData(response.data);
+                    setFormData(response.data);
+                } catch (error) {
+                    console.error("Lỗi khi lấy dữ liệu người dùng:", error);
+                }
+            }
+        };
+        fetchUserData();
+    }, [user]);
 
-const UsersDetails = () => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
 
-  const [users, setUsers] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+    const handleSave = async () => {
+        try {
+            // Gửi request cập nhật user
+            const response = await axios.put(
+                `http://localhost:3000/users/${user.id}`,
+                formData
+            );
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+            if (response.status === 200) {
+                const updatedUser = response.data;
 
-  const fetchUsers = async () => {
-    const response = await axios.get('http://localhost:3000/users');
-    setUsers(response.data);
-  };
+                // Cập nhật trạng thái ứng dụng và localStorage
+                setUser(updatedUser);
+                localStorage.setItem("user", JSON.stringify(updatedUser));
+                setDisplayData(updatedUser);
 
-  const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3000/users/${id}`);
-    fetchUsers();
-  };
+                setMessage("Cập nhật thông tin thành công!");
+                setIsEditing(false);
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
+                setTimeout(() => {
+                    setMessage("");
+                }, 3000);
+            }
+        } catch (error) {
+            console.error("Lỗi khi cập nhật thông tin:", error);
+            setMessage("Không thể cập nhật thông tin. Vui lòng thử lại sau.");
 
-  return (
-    <div className="container mt-5">
-      <h1>Quản lý người dùng</h1>
-      <InputGroup className="mb-3">
-        <FormControl
-          placeholder="Tìm kiếm theo số điện thoại"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-        <Button variant="outline-secondary">Xuất excel</Button>
-      </InputGroup>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Email</th>
-            <th>Họ và tên</th>
-            <th>Số điện thoại</th>
-            <th>Ngày sinh</th>
-            <th>Giới tính</th>
-            <th>Quyền</th>
-            <th>Thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users
-            .filter((user) =>
-              user.phone.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            .map((user, index) => (
-              <tr key={user.id}>
-                <td>{index + 1}</td>
-                <td>{user.email}</td>
-                <td>{user.name}</td>
-                <td>{user.phone}</td>
-                <td>{new Date(user.dob).toLocaleDateString()}</td>
-                <td>{user.gender}</td>
-                <td>{user.role}</td>
-                <td>
-                  <Button variant="link">Edit</Button>
-                  <Button variant="link" onClick={() => handleDelete(user.id)}>Delete</Button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
-    </div>
-  );
+            setTimeout(() => {
+                setMessage("");
+            }, 3000);
+        }
+    };
+
+    const handleCancel = () => {
+        setIsEditing(false);
+        setFormData(displayData); // Reset form về dữ liệu hiện tại
+        setMessage("");
+    };
+
+    if (!user) {
+        return <h1>Bạn chưa đăng nhập</h1>;
+    }
+
+    return (
+        <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
+            <h1>Thông tin người dùng</h1>
+
+            {message && (
+                <p
+                    style={{
+                        color: message.includes("thành công") ? "green" : "red",
+                        padding: "10px",
+                        backgroundColor: message.includes("thành công")
+                            ? "#e8f5e9"
+                            : "#ffebee",
+                        borderRadius: "5px",
+                        marginBottom: "20px",
+                    }}
+                >
+                    {message}
+                </p>
+            )}
+
+            {isEditing ? (
+                <div>
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData?.email || ""}
+                        disabled
+                    />
+                    <br />
+                    <label>Tên:</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={formData?.name || ""}
+                        onChange={handleChange}
+                    />
+                    <br />
+                    <label>Địa chỉ:</label>
+                    <input
+                        type="text"
+                        name="address"
+                        value={formData?.address || ""}
+                        onChange={handleChange}
+                    />
+                    <br />
+                    <label>Số điện thoại:</label>
+                    <input
+                        type="text"
+                        name="phone"
+                        value={formData?.phone || ""}
+                        onChange={handleChange}
+                    />
+                    <br />
+                    <label>Hạng thành viên:</label>
+                    <select
+                        name="membershipTier"
+                        value={formData?.membershipTier || "bronze"}
+                        onChange={handleChange}
+                    >
+                        <option value="bronze">Bronze</option>
+                        <option value="silver">Silver</option>
+                        <option value="gold">Gold</option>
+                    </select>
+                    <br />
+                    <button
+                        onClick={handleSave}
+                        style={{
+                            marginTop: "10px",
+                            backgroundColor: "green",
+                            color: "white",
+                            padding: "10px",
+                            border: "none",
+                            borderRadius: "5px",
+                        }}
+                    >
+                        Lưu
+                    </button>
+                    <button
+                        onClick={handleCancel}
+                        style={{
+                            marginTop: "10px",
+                            marginLeft: "10px",
+                            backgroundColor: "gray",
+                            color: "white",
+                            padding: "10px",
+                            border: "none",
+                            borderRadius: "5px",
+                        }}
+                    >
+                        Hủy
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <p>Email: {displayData?.email}</p>
+                    <p>Tên: {displayData?.name || "Chưa cập nhật"}</p>
+                    <p>Địa chỉ: {displayData?.address || "Chưa cập nhật"}</p>
+                    <p>Số điện thoại: {displayData?.phone || "Chưa cập nhật"}</p>
+                    <p>Hạng thành viên: {displayData?.membershipTier || "Chưa cập nhật"}</p>
+                    <button
+                        onClick={() => setIsEditing(true)}
+                        style={{
+                            marginTop: "10px",
+                            backgroundColor: "blue",
+                            color: "white",
+                            padding: "10px",
+                            border: "none",
+                            borderRadius: "5px",
+                        }}
+                    >
+                        Chỉnh sửa
+                    </button>
+                    <button
+                        onClick={logout}
+                        style={{
+                            marginTop: "10px",
+                            marginLeft: "10px",
+                            backgroundColor: "red",
+                            color: "white",
+                            padding: "10px",
+                            border: "none",
+                            borderRadius: "5px",
+                        }}
+                    >
+                        Đăng xuất
+                    </button>
+                </div>
+            )}
+        </div>
+    );
 };
 
-
-export default UsersDetails;
+export default UserDetails;

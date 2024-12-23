@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { WrapperContainerRight, WrapperContainerLeft, WrapperTextLight } from './style';
-import imageLogo from '../../img/logotun.png';
-import ButtonYellow from '../../components/Button/ButtonYellow';
-import './style.css';
+import { UserContext } from "../../components/contexts/UserContext"; // Import UserContext
+import {
+    WrapperContainerRight,
+    WrapperContainerLeft,
+    WrapperTextLight,
+} from "./style";
+import imageLogo from "../../img/logotun.png";
+import ButtonYellow from "../../components/Button/ButtonYellow";
+import "./style.css";
 
 const SignInPage = () => {
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
     });
-    const [error, setError] = useState('');
+    const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { login } = useContext(UserContext); // Lấy hàm login từ UserContext
 
-    // Xử lý thay đổi input
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -21,41 +26,59 @@ const SignInPage = () => {
         });
     };
 
-    // Xử lý đăng nhập
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://localhost:3000/users/logi', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
+            const response = await fetch("http://localhost:3000/users");
+            const users = await response.json();
 
-            const data = await response.json();
+            const user = users.find(
+                (u) =>
+                    u.email === formData.email &&
+                    u.password === formData.password
+            );
 
-            if (response.ok) {
-                // Đăng nhập thành công
-                setError('');
-                // Chuyển hướng đến Home
-                navigate('/home');
+            if (user) {
+                setError("");
+                login(user); // Cập nhật trạng thái login trong Context
+                navigate("/home");
             } else {
-                // Hiển thị lỗi nếu có
-                setError(data.message || 'Đăng nhập thất bại.');
+                setError("Email hoặc mật khẩu không chính xác.");
             }
         } catch (error) {
-            setError('Không thể kết nối đến server.');
+            setError("Không thể kết nối đến server.");
         }
     };
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0, 0.3)', height: '100vh' }}>
-            <div style={{ width: '800px', height: "450px", borderRadius: '8px', background: '#fff', display: 'flex', border: '2px solid rgb(205, 204, 204)' }}>
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "rgba(0,0,0, 0.3)",
+                height: "100vh",
+            }}
+        >
+            <div
+                style={{
+                    width: "800px",
+                    height: "450px",
+                    borderRadius: "8px",
+                    background: "#fff",
+                    display: "flex",
+                    border: "2px solid rgb(205, 204, 204)",
+                }}
+            >
                 <WrapperContainerLeft>
-                    <h1 style={{ marginBottom: '16px' }}>Xin chào</h1>
-                    <p style={{ marginBottom: '16px' }}>Đăng nhập hoặc Tạo tài khoản</p>
+                    <h1 style={{ marginBottom: "16px" }}>Xin chào</h1>
+                    <p style={{ marginBottom: "16px" }}>
+                        Đăng nhập hoặc Tạo tài khoản
+                    </p>
 
-                    <div className="delivery-content-left-input-top-item" style={{ marginBottom: '16px' }}>
+                    <div
+                        className="delivery-content-left-input-top-item"
+                        style={{ marginBottom: "16px" }}
+                    >
                         <input
                             type="email"
                             name="email"
@@ -80,23 +103,34 @@ const SignInPage = () => {
                         label="Đăng Nhập"
                         onClick={handleLogin}
                         style={{
-                            width: '96%',
-                            fontWeight: 'bold',
-                            borderRadius: '4px',
-                            fontSize: '16px',
-                            margin: '26px 0 10px',
-                            marginBottom: '16px',
+                            width: "96%",
+                            fontWeight: "bold",
+                            borderRadius: "4px",
+                            fontSize: "16px",
+                            margin: "26px 0 10px",
+                            marginBottom: "16px",
                         }}
                     />
 
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
 
-                    <p><WrapperTextLight>Quên mật khẩu?</WrapperTextLight></p>
-                    <p>Chưa có tài khoản? <WrapperTextLight>Tạo tài khoản</WrapperTextLight></p>
+                    <p>
+                        <WrapperTextLight>Quên mật khẩu?</WrapperTextLight>
+                    </p>
+                    <p>
+                        Chưa có tài khoản?{" "}
+                        <WrapperTextLight>Tạo tài khoản</WrapperTextLight>
+                    </p>
                 </WrapperContainerLeft>
 
                 <WrapperContainerRight>
-                    <img src={imageLogo} preview={false} alt="image-logo" height="203px" width="203px" />
+                    <img
+                        src={imageLogo}
+                        preview={false}
+                        alt="image-logo"
+                        height="203px"
+                        width="203px"
+                    />
                     <h4>Mua sắm tại TUN</h4>
                 </WrapperContainerRight>
             </div>
