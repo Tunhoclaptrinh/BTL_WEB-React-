@@ -38,12 +38,37 @@ const SignInPage = () => {
             );
 
             if (user) {
-                setError("");
-                login(user); // Cập nhật trạng thái login trong Context
+                setError(""); // Xóa lỗi cũ
+
+            // Cập nhật lastLogin trên server
+            const updatedUser = {
+                ...user,
+                lastLogin: new Date().toISOString(),
+            };
+
+                const updateResponse = await fetch(
+                    `http://localhost:3000/users/${user.id}`,
+                    {
+                        method: "PATCH", // Dùng PATCH để cập nhật một phần dữ liệu
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ lastLogin: updatedUser.lastLogin }),
+                    }
+                );
+
+                if (!updateResponse.ok) {
+                    alert("Cập nhật ngày đăng nhập thất bại")
+                }
+
+                // Cập nhật trạng thái trong Context sau khi cập nhật thành công
+                login(updatedUser);
                 navigate("/home");
             } else {
                 setError("Email hoặc mật khẩu không chính xác.");
             }
+
+
         } catch (error) {
             setError("Không thể kết nối đến server.");
         }

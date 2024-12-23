@@ -7,7 +7,8 @@ const CartContent = ({ items, updateQuantity, removeItem }) => {
       <table>
         <thead>
           <tr>
-            <th>Sản phẩm</th>
+            <th>Tích chọn</th>
+            <th>Hình ảnh</th>
             <th>Tên sản phẩm</th>
             <th>Màu</th>
             <th>Size</th>

@@ -1118,6 +1118,28 @@ header:hover{
     border-collapse: collapse;
     border-bottom: 2px solid #dddddd;
 }
+.cart-content-left td{
+    padding: 20px 0;
+    border-bottom: 2px solid #dddddd;
+}
+.cart-content-left td:first-child {
+    width: 10px; 
+    padding: 0px;
+    /* tí có sửa thì sửa lên 150px nhé*/ 
+} 
+.cart-content-left td:nth-child(2) img {
+    width: 170px; /* tí có sửa thì sửa lên 150px nhé*/ 
+    padding-left: 0px;
+    border-radius: 10px;
+    box-shadow:#000;
+} 
+
+.cart-content-left td:nth-child(2){
+    max-width: 200px;
+}
+.cart-content-left td:nth-child(3) img{
+    width: 30px;
+}
 .cart-content-left table p {
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
@@ -1143,19 +1165,7 @@ header:hover{
 /* .cart-content-left table td{
     width: 200px;
 } */
-.cart-content-left td{
-    padding: 20px 0;
-    border-bottom: 2px solid #dddddd;
-}
-.cart-content-left td:first-child img {
-    width: 170px; /* tí có sửa thì sửa lên 150px nhé*/ 
-} 
-.cart-content-left td:nth-child(2){
-    max-width: 200px;
-}
-.cart-content-left td:nth-child(3) img{
-    width: 30px;
-}
+
 .cart-content-right{
     flex: 1;
     padding-left: 12px;

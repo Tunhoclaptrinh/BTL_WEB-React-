@@ -366,7 +366,11 @@ const Product = () => {
       </section>
 
       <section className="product-related">
-        <ProductRelated />
+      <ProductRelated
+        title="Sản phẩm liên quan"
+        categoryId={product.category + ""}
+        productId = {product.id +""} // Truyền danh mục hiện tại
+      />
       </section>
 
     </>

@@ -3,7 +3,7 @@ import axios from "axios";
 import './ProductRelated.css';
 import ProductCard from '../../components/ProductCard/ProductCard';
 
-const ProductRelated = ({title = "Sản phẩm liên quan" , categoryId, productId }) => {
+const ProductRelated = ({title = "Sản phẩm liên quan" , categoryId }) => {
   // const relatedProducts = [
   //   { 
   //     id: 4, 
@@ -53,15 +53,11 @@ const ProductRelated = ({title = "Sản phẩm liên quan" , categoryId, product
   const [error, setError] = useState(null);
 
   const fetchProducts = async () => {
-    setLoading(true); // Bắt đầu tải
-    setError(null); // Xóa lỗi cũ (nếu có
-
     try {
       let url = "http://localhost:3000/products";
       if (categoryId) {
-        // alert(categoryId)
         // Lọc theo danh mục nếu `categoryId` được truyền
-        url += `?category=${categoryId}`;
+        url += `?categoryId=${categoryId}`;
       }
   
       const response = await axios.get(url);
@@ -72,16 +68,8 @@ const ProductRelated = ({title = "Sản phẩm liên quan" , categoryId, product
       }));
       
   
-      const filteredProducts = allProducts.filter(
-        (product) =>String(product.id) !== String(productId)// Loại bỏ sản phẩm hiện tại
-      );
-      console.log("Product ID hiện tại:", productId);
-      console.log("Danh sách sản phẩm trước khi lọc:", allProducts);
-      console.log("Danh sách sản phẩm sau khi lọc:", filteredProducts);
-      
-
       // Chọn 4 sản phẩm ngẫu nhiên
-      const randomProducts = filteredProducts
+      const randomProducts = allProducts
         .sort(() => 0.5 - Math.random()) // Trộn ngẫu nhiên danh sách
         .slice(0, 4); // Lấy 4 sản phẩm đầu tiên
       setRelatedProducts(randomProducts);
@@ -94,17 +82,9 @@ const ProductRelated = ({title = "Sản phẩm liên quan" , categoryId, product
   };
   
   
-// // Gọi hàm fetchProducts khi `categoryId` thay đổi
-//     useEffect(() => {
-//         fetchProducts();
-//     }, [categoryId]);
-
-// Gọi hàm fetchProducts khi `categoryId` hoặc `productId` thay đổi
-useEffect(() => {
-  // if (categoryId && productId) {
-      fetchProducts(); // Gọi ngay cả khi không có `categoryId`
-  // }
-}, [categoryId, productId]);
+  useEffect(() => {
+    fetchProducts();
+  }, [categoryId]);
 
   if (loading) {
     return <div>Đang tải sản phẩm...</div>;

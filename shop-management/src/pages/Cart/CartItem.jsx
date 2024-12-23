@@ -1,13 +1,24 @@
 import React from "react";
 
-const CartItem = ({ item, updateQuantity, removeItem }) => {
+const CartItem = ({ item, updateQuantity, removeItem, onSelect }) => {
   const handleQuantityChange = (e) => {
     const value = parseInt(e.target.value, 10);
     updateQuantity(item.id, value);
   };
 
+  const handleCheckboxChange = (e) => {
+    onSelect(item.id, e.target.checked);
+  };
+
   return (
     <tr>
+      <td>
+        <input
+          type="checkbox"
+          checked={item.isSelected || false} // Dùng giá trị từ `item`
+          onChange={handleCheckboxChange}
+        />
+      </td>
       <td>
         <img src={item.image} alt={item.name} />
       </td>
