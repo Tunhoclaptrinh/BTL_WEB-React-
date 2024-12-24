@@ -9,6 +9,8 @@ const Category = () => {
   const [sort, setSort] = useState('');
   const [currentPage, setCurrentPage] = useState(1); // Track the current page
   const [products, setProducts] = useState([]); // State for fetched products
+  const [categories, setCategories] = useState([]); // State for categories
+  const [selectedCategory, setSelectedCategory] = useState(null); // Track selected category
   const [loading, setLoading] = useState(true); // Loading state
   const productsPerPage = 8; // Number of products to display per page
 
@@ -24,10 +26,20 @@ const Category = () => {
           image: JSON.parse(product.image), // Convert image string to array
         }));
         setProducts(fetchedProducts);
+        })
+        .catch(error => {
+          console.error("Error fetching products:", error);
+        });
+
+      // Fetch categories
+      axios.get('http://localhost:3000/categories')
+      .then(response => {
+        setCategories(response.data); // Assuming the categories API returns a list of categories
       })
       .catch(error => {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching categories:", error);
       });
+
   }, []);
 
   
@@ -43,8 +55,6 @@ const Category = () => {
   };
   
 
-
-  // const products = [
   //   { 
   //     id: 1, 
   //     name: "ĐẦM ÔM HỌA TIẾT MS12345", 
@@ -200,39 +210,34 @@ const Category = () => {
   };
   
 
-  const menus = [
-    {
-      title: 'Nữ',
-      subItems: ['Hàng nữ mới về', 'Hàng nữ mới về 1', 'Hàng nữ mới về 2', 'Hàng nữ mới về 3', 'Hàng nữ mới về 4'],
-    },
-    {
-      title: 'Nam',
-      subItems: ['Hàng nam mới về', 'Hàng nam mới về 1', 'Hàng nam mới về 2', 'Hàng nam mới về 3', 'Hàng nam mới về 4'],
-    },
-    { title: 'Trẻ em', subItems: [] },
-    { title: 'Bộ sưu tập', subItems: [] },
-    { title: 'Đồ bảo hộ', subItems: [] },
-  ];
-  
-
   const filteredAndSortedProducts = products
   .filter((product) => {
-    if (filter === "below") {
-      return parseInt(product.price.replace(/\./g, "")) < 1000000;
-    } else if (filter === "above") {
-      return parseInt(product.price.replace(/\./g, "")) >= 1000000;
-    }
-    return true; // Không áp dụng bộ lọc nếu filter rỗng
+
+  // Lọc theo giá
+  let price = parseFloat(product.price.replace(/\./g, '').replace(',', '.'));
+
+  // Lọc theo bộ lọc giá
+  if (filter === "below" && price >= 1000000) return false;
+  if (filter === "above" && price < 1000000) return false;
+
+  // Lọc theo danh mục
+  if (selectedCategory && product.category !== selectedCategory.id) return false;
+
+  return true; // Nếu không có bộ lọc nào, giữ lại sản phẩm
   })
   .sort((a, b) => {
-    const priceA = parseInt(a.price.replace(/\./g, ""));
-    const priceB = parseInt(b.price.replace(/\./g, ""));
-    if (sort === "asc") {
-      return priceA - priceB;
-    } else if (sort === "desc") {
-      return priceB - priceA;
-    }
-    return 0; // Không sắp xếp nếu sort rỗng
+  const priceA = parseFloat(a.price.replace(/\./g, '').replace(',', '.'));
+  const priceB = parseFloat(b.price.replace(/\./g, '').replace(',', '.'));
+
+  // Sắp xếp theo giá
+  if (sort === "asc") {
+    return priceA - priceB;
+  } else if (sort === "desc") {
+    return priceB - priceA;
+  }
+  return 0; // Không sắp xếp nếu sort rỗng
+
+
   });
 
 
@@ -247,11 +252,29 @@ const Category = () => {
   // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const handleCategoryClick = (category) => {
+    if (selectedCategory?.id === category.id) {
+      setSelectedCategory(null); // Deselect category if it's already selected
+    } else {
+      setSelectedCategory(category); // Set selected category
+    }
+  };
+
   return (
     <section className="category">
       <div className="container">
-        <div className="category-top row">
-          <p>Home</p> <span>&#10230; </span> <p>Nữ</p> <span>&#10230; </span> <p>Hàng nữ mới về</p>
+        <div className="category-top row" >
+          <p> 
+            <a href="/home">Trang chủ</a>
+          </p >
+            <span>&#10230; </span>
+          <p span> 
+            <a href="/category">Danh mục</a> 
+          </p>
+            <span>&#10230; </span>
+            <p style={{ color: "#007bff"}}>{selectedCategory ? selectedCategory.name : 'none'}
+          </p> 
+          {/* <span>&#10230; </span> <p>Hàng nữ mới về</p> */}
         </div>
       </div>
       <div className="container">
@@ -260,16 +283,18 @@ const Category = () => {
           {/* Left Sidebar */}
           <div className="category-left">
             <ul>
-              {menus.map((menu, index) => (
+              {categories.map((menu, index) => (
                 <li
                   key={index}
-                  className={`category-left-li ${
-                    expandedMenus.includes(index) ? 'block' : ''
-                  } ${activeSubMenu === index ? 'active' : ''}`}
-                  onClick={() => toggleMenu(index)} // Toggle menu chính
+                  className={`category-left-li ${selectedCategory?.id === menu.id ? 'active block' : ''}`}
+                  // className={`category-left-li ${expandedMenus.includes(index) ? 'block' : ''} ${activeSubMenu === index ? 'active' : ''}`}
+                  onClick={() => handleCategoryClick(menu)}
+                  // onClick={() => toggleMenu(index)} // Toggle menu chính
                 >
-                  <a href="#">{menu.title}</a>
-                  {menu.subItems.length > 0 && (
+                  <a href="#">{menu.name}</a>
+                  {/* <a href="#">{menu.title}</a> */}
+
+                  {/* {menu.subItems.length > 0 && (
                     <ul className='sub-item'
                       style={{
                         maxHeight: expandedMenus.includes(index)
@@ -282,17 +307,20 @@ const Category = () => {
                       {menu.subItems.map((subItem, subIndex) => (
                         <li 
                           key={subIndex}
-                          className={selectedSubMenu === `${index}-${subIndex}` ? 'selected' : ''} // Đổi màu khi được chọn
+                          className={selectedSubMenu === `${index}-${subIndex}` ? 'selected' : ''} 
+                          // Đổi màu khi được chọn
                           onClick={(e) => {
-                            e.stopPropagation(); // Không đóng menu cha
-                            setSelectedSubMenu(`${index}-${subIndex}`); // Đặt submenu được chọn
+                            e.stopPropagation(); 
+                            // Không đóng menu cha
+                            setSelectedSubMenu(`${index}-${subIndex}`); 
+                            // Đặt submenu được chọn
                           }}
                         >
                           <a href="#">{subItem}</a>
                         </li>
                       ))}
                     </ul>
-                  )}
+                  )} */}
                 </li>
               ))}
             </ul>

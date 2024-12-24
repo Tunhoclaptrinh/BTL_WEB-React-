@@ -103,23 +103,23 @@ body {
     font-size: 14px;
   }
   
-  button:hover {
+  .product-management button:hover {
     opacity: 0.9;
   }
   
-  button.edit {
+  .product-management button.edit {
     background-color: #166c19;
     color: white;
     font-style: italic;
   }
   
-  button.delete {
+  .product-management button.delete {
     background-color: #db1f1f;
     color: rgb(255, 255, 255);
     font-style: italic;
   }
   
-  button.add {
+  .product-management button.add {
     background-color: #ce3c74;
     border: 2px solid #ae8787;
     color: white;
@@ -131,7 +131,7 @@ body {
   }
   
   /* Modal styles */
-  .modal {
+  .product-management .modal {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,7 +143,7 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
   }
   
-  .modal-content {
+  .product-management .modal-content {
     background-color: rgb(255, 255, 255);
     padding: 20px;
     border-radius: 10px;
@@ -153,19 +153,19 @@ body {
     position: relative;
   }
   
-  .modal-content h3 {
+  .product-management .modal-content h3 {
     font-size: 21px;
     margin-top: 0;
     margin: 0 0 10px;
   }
   
-  .modal-content label {
+  .product-management .modal-content label {
     display: block;
     margin: 3px 0 5px;
     text-align: left;
   }
   
-  .modal-content input {
+  .product-management .modal-content input {
     display: block;
     height: 30px;
     width: 100%;
@@ -175,7 +175,7 @@ body {
     border-radius: 2px;
   }
   
-  .modal-content .close {
+  .product-management .modal-content .close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -183,13 +183,13 @@ body {
     cursor: pointer;
   }
   
-  .modal-content button {
+  .product-management .modal-content button {
     width: 100%;
     margin-top: 10px;
   }
 
   /*phân trang*/
-  .modal-content .pagination {
+  .product-management .modal-content .pagination {
     display: flex;
     height: 42px;
     padding: auto;

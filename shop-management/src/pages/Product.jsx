@@ -1,137 +1,72 @@
-import React, { useRef, useEffect,useState  } from "react";
+import React, { useRef, useEffect,useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { UserContext } from "../components/contexts/UserContext";
 import ButtonWhite from '../components/Button/ButtonWhite';
 import ButtonYellow from '../components/Button/ButtonYellow';
 import axios from "axios";
-
-import "D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css";
+import "../styles/global.css";
 import ProductRelated from "./ProductRelated/ProductRelated";
-import Header from "../components/Header/Header";
 
 
 const Product = () => {
-    const { productId } = useParams();
-    const navigate = useNavigate();
+  const { productId } = useParams();
+  const navigate = useNavigate();
 
-    const productImgRef = useRef(null);
 
-    const [activeTab, setActiveTab] = useState("detail"); // "detail" hoặc "protect"
-    const [isExpanded, setIsExpanded] = useState(false); // Trạng thái của phần mở rộng
+  const { user } = useContext(UserContext);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
-  // Hàm xử lý chuyển đổi tab
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
 
-  // Hàm xử lý bật/tắt phần mở rộng
-  const toggleExpand = () => {
-    setIsExpanded((prev) => !prev);
-  };
+  const productImgRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("detail"); // "detail" hoặc "protect"
+  const [isExpanded, setIsExpanded] = useState(false); // Trạng thái của phần mở rộng
+  const [categories, setCategories] = useState([]); // State for categories
+    
 
-    // Dữ liệu sản phẩm
-    // const products = [
-    //   { 
-    //     id: 1, 
-    //     name: "ĐẦM ÔM HỌA TIẾT MS12345", 
-    //     price: "60.000", 
-    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-    //     description: "Chi tiết sản phẩm 1", 
-    //     color: "Xanh cổ vịt nhạt",
-    //     sizes: ["S", "M", "L", "XL"],
-    //   },
-    //   { 
-    //     id: 2, 
-    //     name: "ÁO THUN CỔ TRÒN MS67890", 
-    //     price: "490.000", 
-    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-    //     description: "Chi tiết sản phẩm 2", 
-    //     color: "Xanh cổ vịt nhạt",
-    //     sizes: ["S", "M", "L", "XL", "XXL"],
-    //   },
+  const [product, setProduct] = useState(null); // Dữ liệu sản phẩm
+  const [loading, setLoading] = useState(true); // Trạng thái tải
+  const [error, setError] = useState(null); // Trạng thái lỗi
+  // const [error, setError] = useState("");
   
-    //   { 
-    //     id: 3, 
-    //     name: "ÁO THUN CỔ TRÒN MS67890", 
-    //     price: "1.490.000", 
-    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-    //     description: "Chi tiết sản phẩm 2", 
-    //     color: "Xanh cổ vịt nhạt",
-    //     sizes: ["S", "M", "L", "XL", "XXL"],
-    //   },
-    //   { 
-    //     id: 4, 
-    //     name: "ÁO THUN CỔ TRÒN MS67890", 
-    //     price: "490.000", 
-    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-    //     description: "Chi tiết sản phẩm 2", 
-    //     color: "Xanh cổ vịt nhạt",
-    //     sizes: ["S", "M", "L", "XL", "XXL"],
-    //   },
-  
-    //   { 
-    //     id: 5, 
-    //     name: "ÁO THUN CỔ TRÒN MS67890", 
-    //     price: "490.000", 
-    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-    //     description: "Chi tiết sản phẩm 2", 
-    //     color: "Xanh cổ vịt nhạt",
-    //     sizes: ["S", "M", "L", "XL", "XXL"],
-    //   },
-    //   { 
-    //     id: 6, 
-    //     name: "ÁO THUN CỔ TRÒN MS67890", 
-    //     price: "400.000", 
-    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-    //     description: "Chi tiết sản phẩm 2", 
-    //     color: "Xanh cổ vịt nhạt",
-    //     sizes: ["S", "M", "L", "XL", "XXL"],
-    //   },
-    //   { 
-    //     id: 7, 
-    //     name: "ÁO THUN CỔ TRÒN MS67890", 
-    //     price: "90.000", 
-    //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-    //     description: "Chi tiết sản phẩm 2", 
-    //     color: "Xanh cổ vịt nhạt",
-    //     sizes: ["S", "M", "L", "XL", "XXL"],
-    //   },
-  
-    // ];
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/products/${productId}`);
+        // Chuyển đổi image từ chuỗi JSON thành mảng
+        const productData = {
+          ...response.data,
+          sizes: JSON.parse(response.data.sizes || "[]"), // Chuyển đổi `sizes` thành mảng
+          image: JSON.parse(response.data.image || "[]"),
+          colors: JSON.parse(response.data.colors || "[]"),
+        };
+        setProduct(productData);
+      } catch (err) {
+        setError("Không thể tải thông tin sản phẩm.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    const [product, setProduct] = useState(null); // Dữ liệu sản phẩm
-    const [loading, setLoading] = useState(true); // Trạng thái tải
-    const [error, setError] = useState(null); // Trạng thái lỗi
-  
-    useEffect(() => {
-      const fetchProduct = async () => {
-        try {
-          const response = await axios.get(`http://localhost:3000/products/${productId}`);
-          // Chuyển đổi image từ chuỗi JSON thành mảng
-          const productData = {
-            ...response.data,
-            sizes: JSON.parse(response.data.sizes || "[]"), // Chuyển đổi `sizes` thành mảng
-            image: JSON.parse(response.data.image || "[]"),
-          };
-          setProduct(productData);
-        } catch (err) {
-          setError("Không thể tải thông tin sản phẩm.");
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchProduct();
+    fetchProduct();
+
+    // Fetch categories
+    axios.get('http://localhost:3000/categories')
+    .then(response => {
+      setCategories(response.data); // Assuming the categories API returns a list of categories
+    })
+    .catch(error => {
+      console.error("Error fetching categories:", error);
+    });
     }, [productId]);
 
 
     if (loading) {
       return <div>Đang tải thông tin sản phẩm...</div>;
     }
-  
     if (error) {
       return <div className="error-message">{error}</div>;
     }
-  
     if (!product) {
       return 
       (<div className="product">
@@ -146,14 +81,20 @@ const Product = () => {
             Không tìm thấy sản phẩm  <br></br>
         </div>
     </div>)
-
     }
 
-  
-    // Tìm sản phẩm tương ứng
-    // const product = products.find((p) => p.id === parseInt(productId));
 
-  const handleMouseMove = (e) => {
+    // Hàm xử lý chuyển đổi tab
+    const handleTabChange = (tab) => {
+      setActiveTab(tab);
+    };
+  
+    // Hàm xử lý bật/tắt phần mở rộng
+    const toggleExpand = () => {
+      setIsExpanded((prev) => !prev);
+    };
+
+    const handleMouseMove = (e) => {
     const img = productImgRef.current;
     const rect = img.getBoundingClientRect();
 
@@ -162,28 +103,127 @@ const Product = () => {
 
     img.style.transformOrigin = `${x}% ${y}%`;
     img.style.transform = "scale(2)"; // Phóng to 2x
-  };
-
-  const handleMouseLeave = () => {
-    const img = productImgRef.current;
-    img.style.transform = "scale(1)"; // Quay lại kích thước ban đầu
-    img.style.transformOrigin = "center center";
-  };
-
-
-
-    // Xử lý khi nhấn nút MUA HÀNG
-    const handleAddToCart = () => {
-      navigate("/cart", { state: { product } });
     };
 
+    const handleMouseLeave = () => {
+      const img = productImgRef.current;
+      img.style.transform = "scale(1)"; // Quay lại kích thước ban đầu
+      img.style.transformOrigin = "center center";
+    };
 
+    const handleImageClick = (clickedIndex) => {
+      setProduct((prevProduct) => {
+        const newImages = [...prevProduct.image];
+        [newImages[0], newImages[clickedIndex]] = [newImages[clickedIndex], newImages[0]];
+        return {
+          ...prevProduct,
+          image: newImages,
+        };
+      });
+    };
+
+    const handleSizeSelect = (size) => {
+      setSelectedSize(size);
+      setError(""); // Clear any previous errors
+    };
+
+    const handleQuantityChange = (e) => {
+      const value = parseInt(e.target.value) || 0;
+      setQuantity(Math.max(1, value)); // Ensure quantity is at least 1
+    };
+
+    const handleColorSelect = (color) => {
+      setProduct((prevProduct) => ({
+          ...prevProduct,
+          color,
+      }));
+  };
+  
+
+  const addToCart = async () => {
+    console.log("User:", user);
+    if (!user || !user.id) {
+        navigate("/signin"); // Nếu không có người dùng, điều hướng đến trang đăng nhập
+        return;
+    }
+
+    if (!selectedSize) {
+        alert("Vui lòng chọn size trước khi thêm vào giỏ hàng");
+        return;
+    }
+
+    try {
+        const cartResponse = await axios.get(`http://localhost:3000/cart/${user.id}`);
+        const existingCart = Array.isArray(cartResponse.data) ? cartResponse.data[0] : cartResponse.data;
+
+        const cartItem = {
+            productId: productId,
+            quantity: quantity,
+            size: selectedSize,
+            color: product.color || "Không xác định"
+        };
+
+        if (existingCart) {
+            // Giỏ hàng đã tồn tại
+            const updatedItems = [...existingCart.items];
+            const existingItemIndex = updatedItems.findIndex(
+                item => item.productId === productId && item.size === selectedSize
+            );
+
+            if (existingItemIndex >= 0) {
+                // Cập nhật số lượng sản phẩm nếu đã tồn tại
+                updatedItems[existingItemIndex].quantity += quantity;
+            } else {
+                // Thêm sản phẩm mới vào giỏ hàng
+                updatedItems.push(cartItem);
+            }
+
+            await axios.patch(`http://localhost:3000/cart/${existingCart.id}`, {
+                items: updatedItems,
+                updatedAt: new Date().toISOString()
+            });
+        } else {
+            // Tạo giỏ hàng mới nếu chưa tồn tại
+            await axios.post(`http://localhost:3000/cart`, {
+                userId: user.id,
+                color: product.color || "Không xác định",
+                items: [cartItem],
+                updatedAt: new Date().toISOString()
+            });
+        }
+
+        alert("Sản phẩm đã được thêm vào giỏ hàng");
+        navigate("/cart");
+    } catch (error) {
+        console.error("Error adding to cart:", error);
+        alert("Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.");
+    }
+};
+
+  
+  
+  
+  
   return (
     <>
       <section className="product">
             <div className="product-top row">
-                <p>Home</p> <span>&#10230;</span> <p>Nữ</p> <span>&#10230;</span> <p>Hàng nữ mới về</p>
-                <span>&#10230;</span> <p>Áo cổ tròn</p>
+            <p> 
+            <a href="/home">Trang chủ</a>
+            </p >
+              <span>&#10230; </span>
+            <p span> 
+              <a href="/category">Danh mục</a> 
+            </p> 
+            <span>&#10230;</span> 
+            <p> <a href="(categories.find(category => category.id === product.category)?.name )"></a>
+              {categories.length > 0 && product.category !== undefined 
+                ? categories.find(category => category.id === product.category)?.name || "Không xác định" 
+                : "Không xác định"}
+            </p>
+
+            {/* {alert(categories.find(category => category.id === product.category)?.name )} */}
+                <span>&#10230;</span> <p style={{ color: "#007bff"}}>{product ? product.name : 'none'}</p>
             </div>
 
             <div className= "product-content"> 
@@ -205,59 +245,118 @@ const Product = () => {
 
                     </div>
                     <div className="product-content-left-small-img">
-                        {product.image.slice(1).map((img, index) => (
-                          <img key={index} src={img} alt={`Hình ${index + 2}`} />
-                        ))}
-                    </div>
-                </div>
-                
+          {product.image.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`Hình ${index + 1}`}
+              onClick={() => handleImageClick(index)} // Chuyển ảnh khi nhấn
+              style={{
+                cursor: "pointer",
+                border: index === 0 ? "2px solid #007bff" : "none", // Viền cho ảnh lớn
+              }}
+            />
+          ))}
+        </div>
+              </div>
                 <div className="product-content-right">
                     <div className="product-content-right-name">
                         <h1>{product.name}</h1>
-                        {/* <h1>Áo thun cổ tròn MS12345</h1> */}
                         {/* <p>MSP: SP12345</p> */}
                     </div>
                     <div className="product-content-right-price">
                         <p style={{color: "red"}} className="price">{product.price}<sup>Đ</sup></p>
                     </div>
                     <div className="product-content-right-color">
-                        <p>
-                        <span style={{ fontWeight: "bold" }}>Màu sắc</span>: {product.color}{" "}
-                        <span style={{ color: "red" }}>*</span>
-                        </p>
-                        <div className="product-content-right-color-img">
-                        <img src="/images/color1.png" alt="Color Option" />
-                        </div>
-                    </div>
+  <p>
+    <span style={{ fontWeight: "bold" }}>Màu sắc:</span>
+    <span style={{ color: "red" }}>*</span>
+  </p>
+  <div className="product-content-right-color-img">
+    {product.colors?.map((color, index) => (
+      <div
+        key={index}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          margin: "10px", // Khoảng cách giữa các màu
+        }}
+      >
+        {/* Ô màu */}
+        <div
+          onClick={() => handleColorSelect(color)}
+          style={{
+            backgroundColor: color,
+            width: "20px",
+            height: "20px",
+            borderRadius: "50%",
+            border: product.color === color ? "3px solid #007bff" : "1px solid #ccc",
+            cursor: "pointer",
+            marginRight: "10px",
+          }}
+        ></div>
+        {/* Tên màu */}
+        <span
+          style={{
+            fontSize: "14px",
+            color: product.color === color ? "#007bff" : "#333", // Làm nổi bật tên màu được chọn
+            fontWeight: product.color === color ? "bold" : "normal",
+          }}
+        >
+          {color}
+        </span>
+      </div>
+    ))}
+  </div>
+</div>
+
+
                     <div className="product-content-right-size">
                         <p>Size:</p>
-                        <div className="size">
-                            {/* {product.sizes.map((size) => (
-                                <span key={size}>{size}</span>
-                            ))} */}
+                        {/* <div className="size">
                             {product.sizes.map((size, index) => (
                             <span key={index}>{size}</span>
                           ))}
-                        </div>
+                        </div> */}
+                        <div className="size">
+                    {product.sizes.map((size, index) => (
+                        <span 
+                            key={index}
+                            onClick={() => handleSizeSelect(size)}
+                            style={{
+                                cursor: 'pointer',
+                                backgroundColor: selectedSize === size ? '#007bff' : 'white',
+                                color: selectedSize === size ? 'white' : 'black',
+                                
+                            }}
+                        >
+                            {size}
+                        </span>
+                    ))}
+                </div>
                     </div>
                     <div className="product-content-right-quantity">
                         <p>Số lượng:</p>
-                        <input type="number" min="0" defaultValue="1" />
+                        <input 
+                            type="number" 
+                            min="1" 
+                            value={quantity}
+                            onChange={handleQuantityChange}
+                        />
                     </div>
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                     <p style={{ color: "red" }}>Vui lòng chọn size *</p>
                     <div className="product-content-right-button row">
-                        
-
                         <ButtonWhite
                           className="" 
-                          onClick={handleAddToCart}
+                          onClick={addToCart}
                           icon='fas fa-shopping-cart'
                           label=' - MUA HÀNG'
                           style={{
-                            width: '190px',
-                            height: '40px',
+                            width: '250px',
+                            height: '50px',
                             borderRadius: '0px',
-                            fontSize: '14px',
+                            fontSize: '20px',
                             padding: '6px 12px',
                             justifyContent: 'space-between',
                             marginRight: '12px',
@@ -267,20 +366,15 @@ const Product = () => {
                           }}
                         />
 
-
-                        {/* <button>
-                        <p>THÊM VÀO GIỎ HÀNG</p>
-                        </button> */}
-
                         <ButtonYellow
                           className="" 
-                          onClick={handleAddToCart}
+                          onClick={addToCart}
                           label='THÊM VÀO GIỎ HÀNG'
                           style={{
-                            width: '190px',
-                            height: '40px',
+                            width: '250px',
+                            height: '50px',
                             borderRadius: '0px',
-                            fontSize: '14px',
+                            fontSize: '20px',
                             padding: '6px 12px',
                             justifyContent: 'space-between',
                             marginRight: '12px',
@@ -372,7 +466,6 @@ const Product = () => {
         productId = {product.id +""} // Truyền danh mục hiện tại
       />
       </section>
-
     </>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import CartItem from "./CartItem";
 
 const CartContent = ({ items, updateQuantity, removeItem }) => {
+  
   return (
     <div className="cart-content-left">
       <table>

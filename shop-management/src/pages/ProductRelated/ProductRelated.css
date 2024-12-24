@@ -6,7 +6,12 @@
     margin-left: 50px;
 }
 .product-related-tittle {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    width: 94%;
+    border-bottom: 2px solid #d6d1d1;
+    
+
 }
 .product-related-tittle p {
     font-family: Arial, Helvetica, sans-serif;

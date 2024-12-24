@@ -5,6 +5,7 @@ import '../../styles/admin-style.css';
 // import Header from '../Header/Header';
 import ProductManagement from '../ProductManagement/ProductManagement';
 import CategoryManagement from '../CategoryManagement/CategoryManagement';
+import UsersManagement from '../UsersManagement/UsersMangement';
 import { useState } from 'react';
 
 
@@ -43,7 +44,7 @@ function AdminLayout() {
             <li>
               <a href="#">Khách Hàng</a>
               <ul>
-                <li><Link to="#">Thông Tin</Link></li>
+                <li><Link to="#" onClick={() => setActiveComponent('UsersManagement')}>Thông Tin</Link></li>
                 <li><Link to="#">Đơn Hàng</Link></li>
                 <li><Link to="#">Giỏ Hàng</Link></li>
               </ul>
@@ -53,6 +54,8 @@ function AdminLayout() {
         <div className="admin-content-right">
             {activeComponent === 'ProductManagement' && <ProductManagement />}
             {activeComponent === 'CategoryManagement' && <CategoryManagement />}
+            {activeComponent === 'UsersManagement' && <UsersManagement />}
+
         </div>
       </section>
     </div>

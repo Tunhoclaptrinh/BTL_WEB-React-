@@ -78,6 +78,7 @@ function ProductManagement() {
         description: '',
         image: '',
         category: '',
+        colors: [],
       });
       const response = await axios.get('http://localhost:3000/products');
       setClothes(response.data);
@@ -259,7 +260,21 @@ function ProductManagement() {
                 ))}
               </select>
             </label>
+
             <br />
+            <label>
+              Màu sắc:
+              <input
+                type="text"
+                value={editingCloth ? editingCloth.colors : newCloth.colors}
+                onChange={(e) =>
+                  editingCloth
+                    ? setEditingCloth({ ...editingCloth, colors: e.target.value })
+                    : setNewCloth({ ...newCloth, colors: e.target.value })
+                }
+              />
+            </label>
+
 
             <label>
               Số lượng:
@@ -273,7 +288,7 @@ function ProductManagement() {
                 }
               />
             </label>
-            <br />
+
             <label>
               Giá:
               <input
@@ -286,7 +301,7 @@ function ProductManagement() {
                 }
               />
             </label>
-            <br />
+
             <label>
               Kích cỡ:
               <input
@@ -299,7 +314,7 @@ function ProductManagement() {
                 }
               />
             </label>
-            <br />
+
             <label>
               Chất liệu:
               <input
@@ -312,7 +327,7 @@ function ProductManagement() {
                 }
               />
             </label>
-            <br />
+
             <label>
               Mô tả:
               <input
@@ -325,7 +340,7 @@ function ProductManagement() {
                 }
               />
             </label>
-            <br />
+
             <label>
               Hình ảnh:
               <input
@@ -338,7 +353,7 @@ function ProductManagement() {
                 }
               />
             </label>
-            <br />
+
             <button
               style={{ backgroundColor: 'green', color: 'white', marginRight: '10px' }}
               onClick={editingCloth ? handleSave : handleAdd}

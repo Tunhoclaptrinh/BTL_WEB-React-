@@ -1,43 +1,112 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext  } from 'react';
+import axios from 'axios';
+import { UserContext } from '../../components/contexts/UserContext';
 import CartContent from "./CartContent";
 import CartSummary from "./CartSummary";
 import "D:/0. study_material/LẬP TRÌNH WEB/BTL_WEB/source/shop-management/src/styles/global.css";
 
 const Cart = () => {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      image: "/images/sp1.webp",
-      name: "Quần sooc bò đen MS 23213123",
-      color: "/images/color4.png",
-      size: "XL",
-      price: 239000,
-      quantity: 2,
-    },
-    {
-      id: 2,
-      image: "/images/sp1.webp",
-      name: "Quần bò đen MS 232123",
-      color: "/images/color4.png",
-      size: "XL",
-      price: 279000,
-      quantity: 2,
-    },
-  ]);
+  const { user } = useContext(UserContext); // Lấy thông tin người dùng từ context
+  const [items, setItems] = useState([]); // Dữ liệu sản phẩm trong giỏ hàng
+  const [loading, setLoading] = useState(true); // Trạng thái tải
+  const [error, setError] = useState(null); // Trạng thái lỗi
 
-  const updateQuantity = (id, quantity) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
-      )
-    );
+ // Lấy dữ liệu giỏ hàng từ API
+ useEffect(() => {
+  const fetchCart = async () => {
+    try {
+      if (!user || !user.id) {
+        setError("Người dùng chưa đăng nhập.");
+        setLoading(false);
+        return;
+      }
+
+      const response = await axios.get(`http://localhost:3000/cart/${user.id}`);
+      const cartData = response.data;
+
+
+      console.log("Dữ liệu giỏ hàng:", items);
+console.log("Thông tin API trả về:",cartData);
+
+      // Cập nhật state items
+      setItems(cartData.items || []);
+    } catch (err) {
+      console.error("Lỗi khi tải dữ liệu giỏ hàng:", err);
+      setError("Không thể tải dữ liệu giỏ hàng.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const removeItem = (id) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
+  fetchCart();
+}, [user]);
 
+
+// Cập nhật số lượng sản phẩm
+const updateQuantity = async (id, quantity) => {
+  setItems((prevItems) =>
+    prevItems.map((item) =>
+      item.productId === id ? { ...item, quantity: Math.max(1, quantity) } : item
+    )
+  );
+
+  // Gửi API cập nhật số lượng
+  try {
+    await axios.patch(`http://localhost:3000/cart/${user.id}`, {
+      items: items.map((item) =>
+        item.productId === id
+          ? { ...item, quantity: Math.max(1, quantity) }
+          : item
+      ),
+
+      
+    });
+  } catch (err) {
+    console.error("Lỗi khi cập nhật số lượng:", err);
+  }
+};
+
+// Xóa sản phẩm khỏi giỏ hàng
+const removeItem = async (id) => {
+  const updatedItems = items.filter((item) => item.productId !== id);
+  setItems(updatedItems);
+
+  // Gửi API cập nhật giỏ hàng sau khi xóa
+  try {
+    await axios.patch(`http://localhost:3000/cart/${user.id}`, {
+      items: updatedItems,
+    });
+  } catch (err) {
+    console.error("Lỗi khi xóa sản phẩm:", err);
+  }
+};
+
+
+
+
+// Tính tổng tiền
   const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  if (loading) {
+    return <div>Đang tải dữ liệu giỏ hàng...</div>;
+  }
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+  // const updateQuantity = (id, quantity) => {
+  //   setItems((prevItems) =>
+  //     prevItems.map((item) =>
+  //       item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
+  //     )
+  //   );
+  // };
+
+  // const removeItem = (id) => {
+  //   setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  // };
+
+  // const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <section className="cart">
@@ -70,7 +139,7 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-        <div className="cart-content row">
+          <div className="cart-content row">
           <CartContent items={items} updateQuantity={updateQuantity} removeItem={removeItem} />
           <CartSummary subtotal={subtotal} />
         </div>
