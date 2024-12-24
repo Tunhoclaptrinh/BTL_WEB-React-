@@ -85,7 +85,7 @@ const removeItem = async (id) => {
 
 
 // Tính tổng tiền
-  const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+  const subtotal = items.reduce((total, item) => total + Number(item.price) * item.quantity, 0);
 
   if (loading) {
     return <div>Đang tải dữ liệu giỏ hàng...</div>;

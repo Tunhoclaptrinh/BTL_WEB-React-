@@ -89,7 +89,7 @@ const CartItem = ({ item, updateQuantity, removeItem, onSelect }) => {
           onChange={handleQuantityChange}
         />
       </td>
-      <td>{(productDetails.salePrice * item.quantity).toLocaleString("it-IT")} Đ</td>
+      <td>{(productDetails.price * item.quantity).toLocaleString("it-IT")} Đ</td>
       <td>
         <span
           className="remove-item"

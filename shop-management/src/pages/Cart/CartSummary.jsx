@@ -69,7 +69,7 @@ const CartSummary = ({ subtotal }) => {
                       height: '40px',
                       borderRadius: '0px',
                       fontSize: '16px',
-                      padding: '6px 12px',
+                      padding: '6px 8px',
                       fontWeight: "bold",
                       margin: '20px',
                       display: 'inline-block'
@@ -83,7 +83,7 @@ const CartSummary = ({ subtotal }) => {
                       height: '40px',
                       borderRadius: '0px',
                       fontSize: '16px',
-                      padding: '6px 12px',
+                      padding: '6px 10px',
                       fontWeight: "bold",
                       margin: '20px 0px 20px 130px',
                       display: 'inline-block',

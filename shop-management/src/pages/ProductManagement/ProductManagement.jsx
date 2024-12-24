@@ -10,8 +10,8 @@ function ProductManagement() {
   const [search, setSearch] = useState('');
   const [newCloth, setNewCloth] = useState({
     name: '',
-    quantity: '',
-    price: '',
+    quantity: 0,
+    price: 0,
     sizes: '',
     material: '',
     description: '',
@@ -71,8 +71,8 @@ function ProductManagement() {
       setIsModalOpen(false);
       setNewCloth({
         name: '',
-        quantity: '',
-        price: '',
+        quantity: 0,
+        price: 0,
         sizes: '',
         material: '',
         description: '',
@@ -293,7 +293,7 @@ function ProductManagement() {
               Giá:
               <input
                 type="text"
-                value={editingCloth ? editingCloth.price : newCloth.price}
+                value={editingCloth ? Number(editingCloth.price) : newCloth.price}
                 onChange={(e) =>
                   editingCloth
                     ? setEditingCloth({ ...editingCloth, price: e.target.value })
