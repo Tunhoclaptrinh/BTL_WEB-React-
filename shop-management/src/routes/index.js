@@ -16,7 +16,7 @@ import UserDetails from '../pages/UsersDetails/UserDetails';
 
 
 
-import AdminLayout from '../pages/Admin/AdminLayout';
+// import AdminLayout from '../pages/Admin/AdminLayout';
 import AdminProductManager from '../pages/Admin/AdminProductManager';
 
 
@@ -102,12 +102,12 @@ export const routes = [
 
 
 //Admin
-   {
-      path: "/admin",
-      page: AdminLayout,
-      isShowHeader: true,
-      isShowFooter: true
-     },
+   // {
+   //    path: "/admin",
+   //    page: AdminLayout,
+   //    isShowHeader: true,
+   //    isShowFooter: true
+   //   },
 
 
 

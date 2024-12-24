@@ -1,133 +1,69 @@
 .profile-container {
   display: flex;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #333;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .profile-sidebar {
   width: 250px;
-  background-color: #f5f5f5;
+  background-color: #fff;
   padding: 20px;
-}
-
-.profile-header {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   background-color: #ccc;
   border-radius: 50%;
-  margin-right: 10px;
-}
-
-.username {
-  display: flex;
-  flex-direction: column;
-}
-
-.username span {
-  font-weight: bold;
-}
-
-.username a {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 12px;
-}
-
-.profile-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px 0;
-}
-
-.profile-menu li {
-  padding: 10px 0;
-  cursor: pointer;
-}
-
-.profile-menu li.active {
-  color: #f53d2d;
-  font-weight: bold;
-}
-
-.profile-content, .address-content {
-  flex-grow: 1;
-  padding: 20px;
-}
-
-.profile-content h2, .address-content h2 {
-  margin: 0 0 10px 0;
-}
-
-.add-address-button, .save-button {
-  background-color: #f53d2d;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
+  object-fit: cover; /* Ensure the image covers the entire area */
   margin-bottom: 20px;
 }
 
-.add-address-button:hover, .save-button:hover {
-  background-color: #e53d2d;
-}
-
-.address-list .address-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.address-info {
+.profile-content {
   flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
 }
 
-.address-info strong {
-  display: block;
-  font-weight: bold;
+.profile-content h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  color: #007bff;
 }
 
-.address-info span,
-.address-info p {
-  display: block;
+.profile-content p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-.default-label {
-  background-color: #f53d2d;
-  color: white;
-  padding: 2px 5px;
-  border-radius: 3px;
-  font-size: 12px;
-  margin-top: 5px;
-  display: inline-block;
+.profile-content p strong {
+  color: #555;
 }
 
-.address-actions {
-  display: flex;
-  flex-direction: column;
+.profile-content p a {
+  color: #007bff;
+  text-decoration: none;
 }
 
-.address-actions button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 5px;
-  margin-bottom: 5px;
-  cursor: pointer;
-}
-
-.address-actions button:hover {
-  background-color: #0056b3;
+.profile-content p a:hover {
+  text-decoration: underline;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .form-group label {
@@ -136,48 +72,31 @@
   margin-bottom: 5px;
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"] {
+.form-group input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   box-sizing: border-box;
-}
-
-.date-picker {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-.profile-container {
-  display: flex;
-  gap: 20px;
-}
-
-.profile-sidebar {
-  width: 200px;
-}
-
-.address-content {
-  flex: 1;
-}
-
-.add-address-form {
   border: 1px solid #ddd;
-  padding: 15px;
-  margin-top: 10px;
-  background-color: #f9f9f9;
+  border-radius: 4px;
 }
 
-.form-group {
-  margin-bottom: 10px;
-}
-
-.confirm-button, .cancel-button {
+.save-button, .cancel-button, .edit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
   margin-right: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
-.success-message {
-  color: green;
+.save-button:hover, .cancel-button:hover, .edit-button:hover {
+  background-color: #0056b3;
+}
+
+.message {
+  margin-top: 20px;
   font-weight: bold;
-  margin-top: 10px;
+  color: green;
 }

@@ -4,27 +4,54 @@ import axios from "axios";
 const CartItem = ({ item, updateQuantity, removeItem, onSelect }) => {
   const [productDetails, setProductDetails] = useState(null);
 
+  const normalizeProduct = (product) => {
+    try {
+      return {
+        ...product,
+        // Chuẩn hóa image thành mảng
+        image: Array.isArray(product.image) ? product.image : JSON.parse(product.image || "[]"),
+  
+        // Chuẩn hóa sizes thành mảng
+        sizes: Array.isArray(product.sizes) ? product.sizes : JSON.parse(product.sizes || "[]"),
+  
+        // Chuẩn hóa price thành số nguyên hoặc số thực
+        price: parseFloat(product.price),
+  
+        // Chuẩn hóa quantity thành số nguyên
+        quantity: parseInt(product.quantity, 10),
+      };
+    } catch (error) {
+      console.error("Lỗi khi chuẩn hóa sản phẩm:", error);
+      return product; // Trả về sản phẩm gốc nếu xảy ra lỗi
+    }
+  };
+  
   // Lấy thông tin sản phẩm từ API
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/products/${item.productId}`);
-        setProductDetails(response.data);
+        
+        // Chuẩn hóa dữ liệu sản phẩm
+        const normalizedData = normalizeProduct(response.data);
+        setProductDetails(normalizedData);
       } catch (error) {
         console.error("Lỗi khi tải thông tin sản phẩm:", error);
       }
     };
-
+  
     if (item.productId) {
       fetchProductDetails();
     }
   }, [item.productId]);
+  
 
   // Lấy hình ảnh đầu tiên từ mảng hoặc sử dụng hình ảnh mặc định
   const getFirstImage = (images) => {
     try {
-      const parsedImages = Array.isArray(images) ? images : JSON.parse(images || "[]");
-      return parsedImages.length > 0 ? parsedImages[0] : "https://via.placeholder.com/90x100";
+      const parsedImages = images
+      return parsedImages;
+
     } catch (error) {
       console.error("Lỗi khi phân tích hình ảnh:", error);
       return "https://via.placeholder.com/90x100"; // Hình ảnh mặc định nếu xảy ra lỗi
@@ -58,8 +85,8 @@ const CartItem = ({ item, updateQuantity, removeItem, onSelect }) => {
         />
       </td>
       <td>
-        <img
-          src={getFirstImage(productDetails.images)} // Sử dụng hình ảnh từ chi tiết sản phẩm
+      <img
+          src={productDetails.image[0]} // Hiển thị hình ảnh đầu tiên
           alt={productDetails.name}
           style={{ width: "90px", height: "100px" }}
         />
@@ -67,16 +94,12 @@ const CartItem = ({ item, updateQuantity, removeItem, onSelect }) => {
       <td>
         <p>{productDetails.name}</p>
       </td>
-      <td>
-        <div
-          style={{
-            width: "20px",
-            height: "20px",
-            backgroundColor: productDetails.colors ? productDetails.colors[0] : "#fff",
-            border: "1px solid #ccc",
-          }}
-          title={productDetails.colors ? productDetails.colors[0] : "Không xác định"}
-        ></div>
+      <td >
+        <div style={{
+            backgroundColor: "#fff",
+            fontWeight: "bold",
+            borderRadius: "10px",
+          }}>{item.color }</div>
       </td>
       <td>
         <p>{item.size}</p>
@@ -89,7 +112,7 @@ const CartItem = ({ item, updateQuantity, removeItem, onSelect }) => {
           onChange={handleQuantityChange}
         />
       </td>
-      <td>{(productDetails.price * item.quantity).toLocaleString("it-IT")} Đ</td>
+      <td>{(Number(productDetails.price) * Number(item.quantity)).toLocaleString("it-IT")} Đ</td>
       <td>
         <span
           className="remove-item"

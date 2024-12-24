@@ -65,8 +65,14 @@ function ProductManagement() {
   }
 
   const handleAdd = async () => {
+    const newProduct = {
+      ...newCloth,
+      price: parseFloat(newCloth.price),
+      quantity: parseInt(newCloth.quantity, 10),
+    };
+  
     try {
-      await axios.post('http://localhost:3000/products', newCloth);
+      await axios.post('http://localhost:3000/products', newProduct);
       alert('Thêm sản phẩm thành công!');
       setIsModalOpen(false);
       setNewCloth({
@@ -88,8 +94,14 @@ function ProductManagement() {
   };
 
   const handleSave = async () => {
+    const updatedProduct = {
+      ...editingCloth,
+      price: parseFloat(editingCloth.price),
+      quantity: parseInt(editingCloth.quantity, 10),
+    };
+  
     try {
-      await axios.put(`http://localhost:3000/products/${editingCloth.id}`, editingCloth);
+      await axios.put(`http://localhost:3000/products/${editingCloth.id}`, updatedProduct);
       alert('Cập nhật sản phẩm thành công!');
       setEditingCloth(null);
       setIsModalOpen(false);
@@ -99,6 +111,7 @@ function ProductManagement() {
       console.error('Lỗi khi cập nhật sản phẩm:', error);
     }
   };
+  
 
   const handleDelete = async (id) => {
     try {

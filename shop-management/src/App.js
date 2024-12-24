@@ -11,8 +11,8 @@ import {UserProvider } from './components/contexts/UserContext';
 
 
 import Product from './pages/Product';
-
-
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AdminLayout from './pages/Admin/AdminLayout';
 
 
 // Admin
@@ -54,7 +54,19 @@ function App() {
             <Route path="/admin/category/add" element={<AddCategory />} />
             <Route path="/admin/category/list" element={<CategoryList />} />
             <Route path="admin/product/add" element={<AddProduct />} /> */}
-            
+             {/* Bảo vệ đường dẫn admin */}
+              <Route
+                path="/admin/*"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <AdminLayout />
+                  </ProtectedRoute>
+                }
+              />
+
+
+
+
             <Route path="/product/:productId" element={
                   <DefaultComponent>
                     <Product/>

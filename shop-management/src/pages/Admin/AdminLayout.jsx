@@ -2,10 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
 import '../../styles/admin-style.css';
-// import Header from '../Header/Header';
+
 import ProductManagement from '../ProductManagement/ProductManagement';
 import CategoryManagement from '../CategoryManagement/CategoryManagement';
-import UsersManagement from '../UsersManagement/UsersMangement';
 import { useState } from 'react';
 
 
@@ -18,13 +17,12 @@ function AdminLayout() {
           <img src="/images/logotun.png" alt="Logo" style={{ width: '80px', height: 'auto' }} />
         </Link>
       </header>
-       {/* <Header /> */}
+      
       <section className="admin-content">
         <div className="admin-content-right">
         </div>
       </section>
   
-      {/* <Header/> */}
       <section className="admin-content">
         <div className="admin-content-left" style={{ backgroundColor: '#fff' }}>
           <ul>
@@ -44,7 +42,7 @@ function AdminLayout() {
             <li>
               <a href="#">Khách Hàng</a>
               <ul>
-                <li><Link to="#" onClick={() => setActiveComponent('UsersManagement')}>Thông Tin</Link></li>
+                <li><Link to="#">Thông Tin</Link></li>
                 <li><Link to="#">Đơn Hàng</Link></li>
                 <li><Link to="#">Giỏ Hàng</Link></li>
               </ul>
@@ -54,8 +52,6 @@ function AdminLayout() {
         <div className="admin-content-right">
             {activeComponent === 'ProductManagement' && <ProductManagement />}
             {activeComponent === 'CategoryManagement' && <CategoryManagement />}
-            {activeComponent === 'UsersManagement' && <UsersManagement />}
-
         </div>
       </section>
     </div>

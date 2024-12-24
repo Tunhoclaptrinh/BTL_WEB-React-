@@ -6,12 +6,14 @@ import ButtonBlack from "../../components/Button/ButtonBlack";
 
 const CartSummary = ({ subtotal }) => {
   const navigate = useNavigate();
-  const shippingCost = subtotal >= 1000000 ? 0 : 30000;
-  const tax = Math.round(subtotal * 0.1);
-  const total = subtotal + tax + shippingCost;
+
+  // Đảm bảo subtotal là số
+  const normalizedSubtotal = Number(subtotal) || 0;
+  const shippingCost = normalizedSubtotal >= 1000000 ? 0 : 30000;
+  const tax = Math.round(normalizedSubtotal * 0.1);
+  const total = normalizedSubtotal + tax + shippingCost;
 
   const handleCheckout = () => {
-    // Navigate to the delivery page when the checkout button is clicked
     navigate("/delivery");
   };
 
@@ -31,7 +33,7 @@ const CartSummary = ({ subtotal }) => {
           <tbody>
             <tr>
               <td>TỔNG SẢN PHẨM</td>
-              <td>{subtotal.toLocaleString("it-IT")} Đ</td>
+              <td>{normalizedSubtotal.toLocaleString("it-IT")} Đ</td>
             </tr>
             <tr>
               <td>VAT 10%</td>
@@ -52,12 +54,12 @@ const CartSummary = ({ subtotal }) => {
       </div>
       <div className="cart-content-right-text">
         <p>Bạn sẽ được miễn phí ship khi đơn hàng của bạn có tổng giá trị trên <b>1.000.000 <sup>Đ</sup></b></p>
-        {subtotal < 1000000 && (
+        {normalizedSubtotal < 1000000 && (
           <p style={{ color: "red", fontWeight: "bold" }}>
-            Mua thêm {(1000000 - subtotal).toLocaleString("it-IT")} Đ để được miễn phí ship!
+            Mua thêm {(1000000 - normalizedSubtotal).toLocaleString("it-IT")} Đ để được miễn phí ship!
           </p>
         )}
-      </div >
+      </div>
       <div className="cart-content-right-button">
         {/* <button onClick={handleContinueShopping}>TIẾP TỤC MUA SẮM</button> */}
         {/* <button onClick={handleCheckout}>THANH TOÁN</button> */}

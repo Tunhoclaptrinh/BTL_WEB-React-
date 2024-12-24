@@ -140,67 +140,156 @@ const Product = () => {
   };
   
 
-  const addToCart = async () => {
-    console.log("User:", user);
-    if (!user || !user.id) {
-        navigate("/signin"); // Nếu không có người dùng, điều hướng đến trang đăng nhập
-        return;
-    }
+//   const addToCart = async () => {
+//     console.log("User:", user);
+//     if (!user || !user.id) {
+//         navigate("/sign-in"); // Nếu không có người dùng, điều hướng đến trang đăng nhập
+//         return;
+//     }
 
-    if (!selectedSize) {
-        alert("Vui lòng chọn size trước khi thêm vào giỏ hàng");
-        return;
-    }
+//     if (!selectedSize) {
+//         alert("Vui lòng chọn size trước khi thêm vào giỏ hàng");
+//         return;
+//     }
 
-    try {
-        const cartResponse = await axios.get(`http://localhost:3000/cart/${user.id}`);
-        const existingCart = Array.isArray(cartResponse.data) ? cartResponse.data[0] : cartResponse.data;
+//     try {
+//         const cartResponse = await axios.get(`http://localhost:3000/cart/${user.id}`);
+//         const existingCart = Array.isArray(cartResponse.data) ? cartResponse.data[0] : cartResponse.data;
 
-        const cartItem = {
-            productId: productId,
-            quantity: quantity,
-            size: selectedSize,
-            color: product.color || "Không xác định"
-        };
+//         const cartItem = {
+//             productId: productId,
+//             quantity: quantity,
+//             size: selectedSize,
+//             color: product.color || "Không xác định"
+//         };
 
-        if (existingCart) {
-            // Giỏ hàng đã tồn tại
-            const updatedItems = [...existingCart.items];
-            const existingItemIndex = updatedItems.findIndex(
-                item => item.productId === productId && item.size === selectedSize
-            );
+//         if (existingCart) {
+//             // Giỏ hàng đã tồn tại
+//             const updatedItems = [...existingCart.items];
+//             const existingItemIndex = updatedItems.findIndex(
+//                 item => item.productId === productId && item.size === selectedSize
+//             );
 
-            if (existingItemIndex >= 0) {
-                // Cập nhật số lượng sản phẩm nếu đã tồn tại
-                updatedItems[existingItemIndex].quantity += quantity;
-            } else {
-                // Thêm sản phẩm mới vào giỏ hàng
-                updatedItems.push(cartItem);
-            }
+//             if (existingItemIndex >= 0) {
+//                 // Cập nhật số lượng sản phẩm nếu đã tồn tại
+//                 updatedItems[existingItemIndex].quantity += quantity;
+//             } else {
+//                 // Thêm sản phẩm mới vào giỏ hàng
+//                 updatedItems.push(cartItem);
+//             }
 
-            await axios.patch(`http://localhost:3000/cart/${existingCart.id}`, {
-                items: updatedItems,
-                updatedAt: new Date().toISOString()
-            });
-        } else {
-            // Tạo giỏ hàng mới nếu chưa tồn tại
-            await axios.post(`http://localhost:3000/cart`, {
-                userId: user.id,
-                color: product.color || "Không xác định",
-                items: [cartItem],
-                updatedAt: new Date().toISOString()
-            });
-        }
+//             await axios.patch(`http://localhost:3000/cart/${existingCart.id}`, {
+//                 items: updatedItems,
+//                 updatedAt: new Date().toISOString()
+//             });
+//         } else {
+//             // Tạo giỏ hàng mới nếu chưa tồn tại
+//             await axios.post(`http://localhost:3000/cart`, {
+//                 userId: user.id,
+//                 items: [cartItem],
+//                 updatedAt: new Date().toISOString()
+//             });
+//         }
 
-        alert("Sản phẩm đã được thêm vào giỏ hàng");
-        navigate("/cart");
-    } catch (error) {
-        console.error("Error adding to cart:", error);
-        alert("Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.");
-    }
-};
+//         alert("Sản phẩm đã được thêm vào giỏ hàng");
+//         navigate("/cart");
+//     } catch (error) {
+//         // Nếu không tìm thấy giỏ hàng, tự động tạo mới
+//         if (error.response && error.response.status === 404) {
+//             console.log("Không tìm thấy giỏ hàng. Đang tạo mới...");
+//             try {
+//                 await axios.post(`http://localhost:3000/cart`, {
+//                     userId: user.id,
+//                     items: [{
+//                         productId: productId,
+//                         quantity: quantity,
+//                         size: selectedSize,
+//                         color: product.color || "Không xác định"
+//                     }],
+//                     updatedAt: new Date().toISOString()
+//                 });
+//                 alert("Sản phẩm đã được thêm vào giỏ hàng mới tạo.");
+//                 navigate("/cart");
+//             } catch (createError) {
+//                 console.error("Lỗi khi tạo giỏ hàng mới:", createError);
+//                 alert("Có lỗi xảy ra khi tạo giỏ hàng mới. Vui lòng thử lại sau.");
+//             }
+//         } else {
+//             console.error("Error adding to cart:", error);
+//             alert("Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.");
+//         }
+//     }
+// };
+
 
   
+const addToCart = async () => {
+  console.log("User:", user);
+  if (!user || !user.id) {
+      navigate("/sign-in"); // Nếu không có người dùng, điều hướng đến trang đăng nhập
+      return;
+  }
+
+  if (!selectedSize) {
+      alert("Vui lòng chọn size trước khi thêm vào giỏ hàng");
+      return;
+  }
+
+  try {
+      // Lấy danh sách giỏ hàng
+      const cartResponse = await axios.get(`http://localhost:3000/cart`);
+      const allCarts = cartResponse.data;
+
+      // Tìm giỏ hàng của người dùng
+      let userCart = allCarts.find(cart => cart.userId === user.id);
+
+      const cartItem = {
+          productId: productId,
+          quantity: quantity,
+          size: selectedSize,
+          color: product.color || "Không xác định",
+      };
+
+      if (userCart) {
+          // Giỏ hàng đã tồn tại
+          const updatedItems = [...userCart.items];
+          const existingItemIndex = updatedItems.findIndex(
+              item => item.productId === productId && item.size === selectedSize
+          );
+
+          if (existingItemIndex >= 0) {
+              // Cập nhật số lượng sản phẩm nếu đã tồn tại
+              updatedItems[existingItemIndex].quantity += quantity;
+          } else {
+              // Thêm sản phẩm mới vào giỏ hàng
+              updatedItems.push(cartItem);
+          }
+
+          // Cập nhật giỏ hàng
+          await axios.patch(`http://localhost:3000/cart/${userCart.id}`, {
+              items: updatedItems,
+              updatedAt: new Date().toISOString(),
+          });
+      } else {
+          // Tạo giỏ hàng mới nếu chưa tồn tại
+          const newCartResponse = await axios.post(`http://localhost:3000/cart`, {
+              // id: user.id,
+              userId: user.id,
+              items: [cartItem],
+              updatedAt: new Date().toISOString(),
+          });
+
+          userCart = newCartResponse.data; // Lưu giỏ hàng mới vào biến userCart
+      }
+
+      alert("Sản phẩm đã được thêm vào giỏ hàng");
+      navigate("/cart");
+  } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.");
+  }
+};
+
   
   
   
@@ -265,10 +354,10 @@ const Product = () => {
                         {/* <p>MSP: SP12345</p> */}
                     </div>
                     <div className="product-content-right-price">
-                        <p style={{color: "red"}} className="price">{product.price}<sup>Đ</sup></p>
+                        <p style={{color: "red"}} className="price">{(product.price).toLocaleString("it-IT")}<sup>Đ</sup></p>
                     </div>
                     <div className="product-content-right-color">
-  <p>
+                      <p>
     <span style={{ fontWeight: "bold" }}>Màu sắc:</span>
     <span style={{ color: "red" }}>*</span>
   </p>

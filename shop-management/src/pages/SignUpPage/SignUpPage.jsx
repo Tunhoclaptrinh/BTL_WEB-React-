@@ -120,8 +120,15 @@ const SignUpPage = () => {
                 </WrapperContainerLeft>
 
                 <WrapperContainerRight>
-                    <img src={imageLogo} preview={false} alt="image-logo" height="203px" width="203px" />
-                    <h4>Mua sắm tại TUN</h4>
+                    <a href="/home">
+                    <img
+                        src={imageLogo}
+                        preview={false}
+                        alt="image-logo"
+                        height="203px"
+                        width="203px"
+                    />
+                    </a>
                 </WrapperContainerRight>
             </div>
         </div>

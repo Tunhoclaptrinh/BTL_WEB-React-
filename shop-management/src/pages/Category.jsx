@@ -14,32 +14,40 @@ const Category = () => {
   const [loading, setLoading] = useState(true); // Loading state
   const productsPerPage = 8; // Number of products to display per page
 
+// Safe JSON parsing
+const safeParseJSON = (str) => {
+  try {
+    return JSON.parse(str);
+  } catch {
+    return [];
+  }
+};
 
-
-  // Fetch products from API
+  // Fetch data from API
   useEffect(() => {
-    // Fetch products from API
-    axios.get('http://localhost:3000/products')
-      .then(response => {
-        const fetchedProducts = response.data.map(product => ({
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        // Fetch products
+        const productResponse = await axios.get('http://localhost:3000/products');
+        const fetchedProducts = productResponse.data.map(product => ({
           ...product,
-          image: JSON.parse(product.image), // Convert image string to array
+          image: safeParseJSON(product.image), // Convert image string to array
         }));
         setProducts(fetchedProducts);
-        })
-        .catch(error => {
-          console.error("Error fetching products:", error);
-        });
 
-      // Fetch categories
-      axios.get('http://localhost:3000/categories')
-      .then(response => {
-        setCategories(response.data); // Assuming the categories API returns a list of categories
-      })
-      .catch(error => {
-        console.error("Error fetching categories:", error);
-      });
+        // Fetch categories
+        const categoryResponse = await axios.get('http://localhost:3000/categories');
+        setCategories(categoryResponse.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchData();
   }, []);
 
   
@@ -54,138 +62,6 @@ const Category = () => {
     console.log("Sort applied:", e.target.value);
   };
   
-
-  //   { 
-  //     id: 1, 
-  //     name: "ĐẦM ÔM HỌA TIẾT MS12345", 
-  //     price: "60.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 1", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL"],
-  //   },
-  //   { 
-  //     id: 2, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-
-  //   { 
-  //     id: 3, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "1.490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-  //   { 
-  //     id: 4, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-
-  //   { 
-  //     id: 5, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-  //   { 
-  //     id: 6, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "400.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-  //   { 
-  //     id: 7, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-  //   { 
-  //     id: 8, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "90.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },  
-  //   { 
-  //     id: 9, 
-  //     name: "ĐẦM ÔM HỌA TIẾT MS12345", 
-  //     price: "60.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 1", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL"],
-  //   },
-  //   { 
-  //     id: 10, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-
-  //   { 
-  //     id: 11, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "1.490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-  //   { 
-  //     id: 12, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-
-  //   { 
-  //     id: 13, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "490.000", 
-  //     image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"],
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   },
-  //   { 
-  //     id: 14, 
-  //     name: "ÁO THUN CỔ TRÒN MS67890", 
-  //     price: "400.000", 
-  //      image: ["/images/sp1.webp", "/images/sp1.2.webp","/images/sp1.3.webp"], 
-  //     description: "Chi tiết sản phẩm 2", 
-  //     color: "Xanh cổ vịt nhạt",
-  //     sizes: ["S", "M", "L", "XL", "XXL"],
-  //   }
-  // ];
 
   // Ông expandedMenus đang là 1 thì dùng selectedSubMenu để chuyển expandedMenus thành 2
   const [expandedMenus, setExpandedMenus] = useState([]); // Track which submenus are expanded
@@ -212,33 +88,35 @@ const Category = () => {
 
   const filteredAndSortedProducts = products
   .filter((product) => {
+    // Kiểm tra nếu `price` là số, chuỗi, hoặc null
+    const rawPrice = typeof product.price === "string" ? product.price : String(product.price || "0");
 
-  // Lọc theo giá
-  let price = parseFloat(product.price.replace(/\./g, '').replace(',', '.'));
+    // Chuyển đổi giá sang số thực
+    const price = parseFloat(rawPrice.replace(/\./g, '').replace(',', '.')) || 0;
 
-  // Lọc theo bộ lọc giá
-  if (filter === "below" && price >= 1000000) return false;
-  if (filter === "above" && price < 1000000) return false;
+    // Lọc theo giá
+    if (filter === "below" && price >= 1000000) return false;
+    if (filter === "above" && price < 1000000) return false;
 
-  // Lọc theo danh mục
-  if (selectedCategory && product.category !== selectedCategory.id) return false;
+    // Lọc theo danh mục
+    if (selectedCategory && product.category !== selectedCategory.id) return false;
 
-  return true; // Nếu không có bộ lọc nào, giữ lại sản phẩm
+    return true;
   })
   .sort((a, b) => {
-  const priceA = parseFloat(a.price.replace(/\./g, '').replace(',', '.'));
-  const priceB = parseFloat(b.price.replace(/\./g, '').replace(',', '.'));
+    const rawPriceA = typeof a.price === "string" ? a.price : String(a.price || "0");
+    const rawPriceB = typeof b.price === "string" ? b.price : String(b.price || "0");
 
-  // Sắp xếp theo giá
-  if (sort === "asc") {
-    return priceA - priceB;
-  } else if (sort === "desc") {
-    return priceB - priceA;
-  }
-  return 0; // Không sắp xếp nếu sort rỗng
+    // Chuyển đổi giá sang số thực
+    const priceA = parseFloat(rawPriceA.replace(/\./g, '').replace(',', '.')) || 0;
+    const priceB = parseFloat(rawPriceB.replace(/\./g, '').replace(',', '.')) || 0;
 
+    if (sort === "asc") return priceA - priceB;
+    if (sort === "desc") return priceB - priceA;
 
+    return 0; // Không sắp xếp nếu `sort` rỗng
   });
+
 
 
   // Pagination logic
@@ -353,16 +231,6 @@ const Category = () => {
 
             {/* Right - product */}
             <div className="category-rigt-content row" id="products">
-              {/* <div className="category-rigt-content row" id="products"> */}
-              {/* {currentProducts.map((product) => (
-                <div className="category-right-content-item" key={product.id}>
-                  <Link to={`/product/${product.id}`}>
-                    <img src={product.image} alt={product.name} />
-                    <h1>{product.name}</h1>
-                    <p className="price">{product.price}<sup>Đ</sup></p>
-                  </Link>
-                </div>
-              ))} */}
               {currentProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

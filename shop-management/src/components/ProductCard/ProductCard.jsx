@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
           <img src={product.image[0]} alt={product.name} />
         </div>
         <h1>{product.name}</h1>
-        <p className="price">{product.price}<sup>Đ</sup> <span style={{
+        <p className="price">{Number(product.price).toLocaleString("it-IT")}<sup>Đ</sup> <span style={{
           fontSize: '14px',
           color: '#000',
           marginLeft: '10px'

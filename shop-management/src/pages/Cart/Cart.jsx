@@ -10,103 +10,149 @@ const Cart = () => {
   const [items, setItems] = useState([]); // Dữ liệu sản phẩm trong giỏ hàng
   const [loading, setLoading] = useState(true); // Trạng thái tải
   const [error, setError] = useState(null); // Trạng thái lỗi
+  const [cartId, setCartId] = useState(null); // Lưu `cartId` để sử dụng
 
  // Lấy dữ liệu giỏ hàng từ API
  useEffect(() => {
-  const fetchCart = async () => {
-    try {
-      if (!user || !user.id) {
-        setError("Người dùng chưa đăng nhập.");
-        setLoading(false);
-        return;
-      }
+//   const fetchCart = async () => {
+//     try {
+//       if (!user || !user.id) {
+//         setError("Người dùng chưa đăng nhập.");
+//         setLoading(false);
+//         return;
+//       }
 
-      const response = await axios.get(`http://localhost:3000/cart/${user.id}`);
-      const cartData = response.data;
+//       const response = await axios.get(`http://localhost:3000/cart/${user.id}`);
+//       const cartData = response.data;
 
+//       console.log("Thông tin API trả về:", cartData);
 
-      console.log("Dữ liệu giỏ hàng:", items);
-console.log("Thông tin API trả về:",cartData);
+//       // Xử lý dữ liệu để đảm bảo các trường hợp hợp lệ
+//       const processedItems = cartData.items.map((item) => ({
+//         ...item,
+//         price: Number(item.price) || 0, // Chuyển price thành số, mặc định là 0 nếu không hợp lệ
+//         quantity: Number(item.quantity) || 0, // Chuyển quantity thành số, mặc định là 0 nếu không hợp lệ
+//         image: JSON.parse(item.image || "[]"), // Parse image nếu là JSON string
+//       }));
 
-      // Cập nhật state items
-      setItems(cartData.items || []);
-    } catch (err) {
-      console.error("Lỗi khi tải dữ liệu giỏ hàng:", err);
-      setError("Không thể tải dữ liệu giỏ hàng.");
-    } finally {
+//       console.log("Dữ liệu sau khi xử lý:", processedItems);
+//       setItems(processedItems);
+//     } catch (err) {
+//       console.error("Lỗi khi tải dữ liệu giỏ hàng:", err);
+//       setError("Không thể tải dữ liệu giỏ hàng.");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   fetchCart();
+// }, [user]);
+
+const fetchCart = async () => {
+  try {
+    if (!user || !user.id) {
+      setError("Hãy đăng nhập tài khoản của bạn");
       setLoading(false);
+      return;
     }
-  };
 
-  fetchCart();
+    // Gọi API lấy danh sách giỏ hàng
+    const response = await axios.get(`http://localhost:3000/cart`);
+    const allCarts = response.data;
+
+    // Tìm giỏ hàng của người dùng hiện tại
+    const userCart = allCarts.find(cart => cart.userId === user.id);
+
+    if (userCart) {
+      setCartId(userCart.id); // Lưu `cartId` để sử dụng
+      const processedItems = userCart.items.map((item) => ({
+        ...item,
+        price: Number(item.price) || 0,
+        quantity: Number(item.quantity) || 0,
+        image: JSON.parse(item.image || "[]"),
+      }));
+      setItems(processedItems);
+    } else {
+      console.log("Không tìm thấy giỏ hàng. Tạo mới...");
+      const newCart = await axios.post(`http://localhost:3000/cart`, {
+        userId: user.id,
+        items: [],
+        updatedAt: new Date().toISOString(),
+      });
+      setCartId(newCart.data.id);
+      setItems([]);
+    }
+  } catch (err) {
+    console.error("Lỗi khi tải dữ liệu giỏ hàng:", err);
+    setError("Không thể tải dữ liệu giỏ hàng.");
+  } finally {
+    setLoading(false);
+  }
+};
+
+fetchCart();
 }, [user]);
 
 
 // Cập nhật số lượng sản phẩm
 const updateQuantity = async (id, quantity) => {
-  setItems((prevItems) =>
-    prevItems.map((item) =>
-      item.productId === id ? { ...item, quantity: Math.max(1, quantity) } : item
-    )
+  const updatedItems = items.map((item) =>
+    item.productId === id ? { ...item, quantity: Math.max(1, quantity) } : item
   );
+  setItems(updatedItems);
 
-  // Gửi API cập nhật số lượng
   try {
-    await axios.patch(`http://localhost:3000/cart/${user.id}`, {
-      items: items.map((item) =>
-        item.productId === id
-          ? { ...item, quantity: Math.max(1, quantity) }
-          : item
-      ),
-
-      
+    alert(cartId)
+    await axios.patch(`http://localhost:3000/cart/${cartId}`, {
+      items: updatedItems.map((item) => ({
+        ...item,
+        image: JSON.stringify(item.image),
+      })),
     });
   } catch (err) {
     console.error("Lỗi khi cập nhật số lượng:", err);
+    setError("Không thể cập nhật số lượng sản phẩm.");
   }
 };
 
 // Xóa sản phẩm khỏi giỏ hàng
 const removeItem = async (id) => {
+  
   const updatedItems = items.filter((item) => item.productId !== id);
   setItems(updatedItems);
 
-  // Gửi API cập nhật giỏ hàng sau khi xóa
   try {
-    await axios.patch(`http://localhost:3000/cart/${user.id}`, {
-      items: updatedItems,
+    await axios.patch(`http://localhost:3000/cart/${cartId}`, {
+      items: updatedItems.map((item) => ({
+        ...item,
+        image: JSON.stringify(item.image),
+      })),
     });
   } catch (err) {
     console.error("Lỗi khi xóa sản phẩm:", err);
+    setError("Không thể xóa sản phẩm.");
   }
 };
 
-
-
-
 // Tính tổng tiền
-  const subtotal = items.reduce((total, item) => total + Number(item.price) * item.quantity, 0);
 
-  if (loading) {
-    return <div>Đang tải dữ liệu giỏ hàng...</div>;
-  }
+ const subtotal = items.reduce((total, item) => {
+  const validPrice = Number(item.price) || 0;
+  const validQuantity = Number(item.quantity) || 0;
+  return total + validPrice * validQuantity;
+}, 0);
 
-  if (error) {
-    return <div className="error-message">{error}</div>;
-  }
-  // const updateQuantity = (id, quantity) => {
-  //   setItems((prevItems) =>
-  //     prevItems.map((item) =>
-  //       item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
-  //     )
-  //   );
-  // };
 
-  // const removeItem = (id) => {
-  //   setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  // };
+console.log("Subtotal:", subtotal);
 
-  // const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+if (loading) {
+  return <div>Đang tải dữ liệu giỏ hàng...</div>;
+}
+
+if (error) {
+  return <div className="error-message" style={{margin: "300px", fontSize: "50px"}}>{error}</div>;
+}
 
   return (
     <section className="cart">

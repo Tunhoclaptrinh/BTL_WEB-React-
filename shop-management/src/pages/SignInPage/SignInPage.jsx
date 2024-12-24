@@ -144,11 +144,12 @@ const SignInPage = () => {
                     </p>
                     <p>
                         Chưa có tài khoản?{" "}
-                        <WrapperTextLight>Tạo tài khoản</WrapperTextLight>
+                        <WrapperTextLight ><a href="/sign-up" style={{color: "blue"}}>Tạo tài khoản</a></WrapperTextLight>
                     </p>
                 </WrapperContainerLeft>
 
                 <WrapperContainerRight>
+                    <a href="/home">
                     <img
                         src={imageLogo}
                         preview={false}
@@ -156,6 +157,7 @@ const SignInPage = () => {
                         height="203px"
                         width="203px"
                     />
+                    </a>
                     <h4>Mua sắm tại TUN</h4>
                 </WrapperContainerRight>
             </div>
